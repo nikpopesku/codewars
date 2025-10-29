@@ -1,4 +1,7 @@
-int quarter_of(int month){
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#include "catch.hpp"       // Include the Catch2 header file
+
+int quarter_of(const int month){
     return ((month - 1) / 3) + 1;
 }
 

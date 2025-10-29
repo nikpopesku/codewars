@@ -1,0 +1,26 @@
+# Minimum version requirement for CMake
+cmake_minimum_required(VERSION 3.10)
+project(YourProjectName CXX) # Replace YourProjectName
+
+# 1. FIND CATCH2 PACKAGE
+# This finds the installation done by Pacman (Catch2 v3 is recommended)
+find_package(Catch2 3 REQUIRED)
+
+# 2. DEFINE YOUR EXECUTABLE (YOUR TEST RUNNER)
+add_executable(
+        YourTestRunner # Name of your test executable (e.g., 'tests')
+        test_quarter.cpp # Name of your test file
+)
+
+# 3. LINK THE LIBRARY
+# Link the Catch2 library target (Catch2::Catch2WithMain) to your executable.
+# This target provides the headers AND the necessary compiled 'main' function.
+target_link_libraries(
+        YourTestRunner
+        PRIVATE Catch2::Catch2WithMain
+)
+
+# Optional: Enable CTest to discover and run tests
+include(CTest)
+include(Catch)
+catch_discover_tests(YourTestRunner)
