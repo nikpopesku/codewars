@@ -14,3 +14,8 @@ TEST_CASE("vowelIndices simple test1") {
     std::vector res{1, 3, 6};
     REQUIRE(vowelIndices("orAnge") == res);
 }
+
+TEST_CASE("vowelIndices simple test2") {
+    std::vector res{5, 9, 11, 12, 18, 19, 24, 25, 28, 34, 35, 36, 37, 39, 53, 63};
+    REQUIRE(vowelIndices("RNmfYmXSegaejlSXXiObWkRaafbeVXQlVOiUakOkQlkkXdScmTWhibWdhkNTkbacbfbjlbcQ") == res);
+}
