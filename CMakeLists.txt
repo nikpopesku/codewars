@@ -18,6 +18,18 @@ add_executable(YourTestRunner
 # Link Catch2 main and your library
 target_link_libraries(YourTestRunner PRIVATE kata Catch2::Catch2WithMain)
 
+# Enable warnings for GCC/Clang
+if (CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(kata PRIVATE -Wall -Wextra -Wpedantic -Wsign-compare)
+    target_compile_options(YourTestRunner PRIVATE -Wall -Wextra -Wpedantic -Wsign-compare)
+endif()
+
+# Enable higher warnings for MSVC
+if (MSVC)
+    target_compile_options(kata PRIVATE /W4 /permissive-)
+    target_compile_options(YourTestRunner PRIVATE /W4 /permissive-)
+endif()
+
 # Enable test discovery
 include(CTest)
 include(Catch)
