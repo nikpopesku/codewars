@@ -10,7 +10,7 @@ std::vector<int> vowelIndices(const std::string& word)
     {
         for (const auto& c : charArray)
         {
-            if (word[i] == c)
+            if (tolower(word[i]) == c)
             {
                 res.push_back(i + 1);
             }

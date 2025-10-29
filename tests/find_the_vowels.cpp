@@ -9,3 +9,8 @@ TEST_CASE("vowelIndices simple tests") {
     std::vector res{2, 4};
     REQUIRE(vowelIndices("super") == res);
 }
+
+TEST_CASE("vowelIndices simple test1") {
+    std::vector res{1, 3, 6};
+    REQUIRE(vowelIndices("orAnge") == res);
+}
