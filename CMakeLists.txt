@@ -3,14 +3,20 @@ project(codewars CXX)
 
 find_package(Catch2 3 REQUIRED)
 
-# Build the code under test as a library (or you can list the .cpp in the test executable directly)
-add_library(quarter STATIC kata/quarter_of_the_year.cpp)
+# Build the code under test as a library with all kata sources
+add_library(kata STATIC
+    kata/quarter_of_the_year.cpp
+    kata/find_the_vowels.cpp
+)
 
-# Test executable
-add_executable(YourTestRunner tests/quarter_of_the_year.cpp)
+# Test executable containing all test files
+add_executable(YourTestRunner
+    tests/quarter_of_the_year.cpp
+    tests/find_the_vowels.cpp
+)
 
 # Link Catch2 main and your library
-target_link_libraries(YourTestRunner PRIVATE quarter Catch2::Catch2WithMain)
+target_link_libraries(YourTestRunner PRIVATE kata Catch2::Catch2WithMain)
 
 # Enable test discovery
 include(CTest)

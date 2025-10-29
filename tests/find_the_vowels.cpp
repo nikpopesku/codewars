@@ -1,13 +1,11 @@
 #include <catch2/catch_test_macros.hpp>
+#include <vector>
+#include <string>
 
-// Declaration to use the function implemented in quarter_of_the_year.cpp
-int quarter_of(const int month);
+// Declaration of the function under test (implemented in kata/find_the_vowels.cpp)
+std::vector<int> vowelIndices(const std::string& word);
 
-Describe(vowelIndicesTest)
-{
-    It(SimpleTests)
-    {
-        std::vector<int> res { 2, 4 };
-        Assert::That(vowelIndices("super"), Equals(res));
-    }
-};
+TEST_CASE("vowelIndices simple tests") {
+    std::vector res{2, 4};
+    REQUIRE(vowelIndices("super") == res);
+}
