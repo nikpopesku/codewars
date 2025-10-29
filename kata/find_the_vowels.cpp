@@ -4,7 +4,7 @@
 std::vector<int> vowelIndices(const std::string& word)
 {
     std::vector<int> res;
-    char charArray[] = {'a', 'e', 'i', 'o', 'u'};
+    char charArray[] = {'a', 'e', 'i', 'o', 'u', 'y'};
 
     for (int i = 0; i < static_cast<int>(word.size()); ++i)
     {

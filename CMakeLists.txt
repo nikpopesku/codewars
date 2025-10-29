@@ -1,7 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 project(codewars CXX)
 
+# Default to Debug build if not specified (helps IDEs and local runs)
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "Build type" FORCE)
+endif()
+
 find_package(Catch2 3 REQUIRED)
+
+# Optionally enable sanitizers for GCC/Clang
+option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 
 # Build the code under test as a library with all kata sources
 add_library(kata STATIC
@@ -28,6 +36,14 @@ endif()
 if (MSVC)
     target_compile_options(kata PRIVATE /W4 /permissive-)
     target_compile_options(YourTestRunner PRIVATE /W4 /permissive-)
+endif()
+
+# Optional sanitizers for GCC/Clang
+if (ENABLE_SANITIZERS AND CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    target_compile_options(kata PRIVATE -fsanitize=address,undefined)
+    target_link_options(kata PRIVATE -fsanitize=address,undefined)
+    target_compile_options(YourTestRunner PRIVATE -fsanitize=address,undefined)
+    target_link_options(YourTestRunner PRIVATE -fsanitize=address,undefined)
 endif()
 
 # Enable test discovery
