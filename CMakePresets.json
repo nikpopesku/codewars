@@ -1,0 +1,38 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "clang-debug",
+      "displayName": "Clang Debug",
+      "description": "Configure with Clang (C++17), Debug build, using CLion's cmake-build-debug directory",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/cmake-build-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "clang-debug",
+      "displayName": "Build (Clang Debug)",
+      "configurePreset": "clang-debug"
+    },
+    {
+      "name": "clang-debug-YourTestRunner",
+      "displayName": "Build YourTestRunner (Clang Debug)",
+      "configurePreset": "clang-debug",
+      "targets": ["YourTestRunner"]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "clang-debug",
+      "displayName": "Test (Clang Debug)",
+      "configurePreset": "clang-debug"
+    }
+  ]
+}
