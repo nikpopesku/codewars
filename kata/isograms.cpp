@@ -3,8 +3,7 @@
 
 using namespace std;
 
-bool is_isogram(const std::string& str)
-{
+bool is_isogram(const std::string &str) {
     set<char> s;
 
     for (auto c: str) {
