@@ -1,4 +1,4 @@
-#include  <../kata/mumbling.cpp>
+#include  "../kata/mumbling.cpp"
 #include "cw_compat.hpp"
 
 void testequal(std::string ans, std::string sol) {
