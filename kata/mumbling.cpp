@@ -8,14 +8,9 @@ public:
         string response;
         int counter = 1;
 
-        for (auto c: s) {
+        for (const auto c: s) {
             for (int i = 0; i < counter; ++i) {
-                if (i == 0) {
-                    response += toupper(c);
-                    continue;
-                }
-
-                response += tolower(c);
+                response += i == 0 ? toupper(c) : tolower(c);
             }
 
             if (counter < static_cast<int>(s.size())) {
