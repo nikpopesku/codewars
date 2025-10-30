@@ -3,36 +3,39 @@
   "cmakeMinimumRequired": { "major": 3, "minor": 21, "patch": 0 },
   "configurePresets": [
     {
-      "name": "clang-debug",
-      "displayName": "Clang Debug",
-      "description": "Configure with Clang (C++17), Debug build, using CLion's cmake-build-debug directory",
+      "name": "clang8-debug",
+      "displayName": "Clang 8 Debug",
+      "description": "Configure with Clang 8 (C++17), Debug build, using CLion's cmake-build-debug directory",
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/cmake-build-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
+        "CMAKE_C_COMPILER": "clang-8",
+        "CMAKE_CXX_COMPILER": "clang++-8",
+        "CMAKE_CXX_STANDARD": "17",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_CXX_EXTENSIONS": "OFF"
       }
     }
   ],
   "buildPresets": [
     {
-      "name": "clang-debug",
-      "displayName": "Build (Clang Debug)",
-      "configurePreset": "clang-debug"
+      "name": "clang8-debug",
+      "displayName": "Build (Clang 8 Debug)",
+      "configurePreset": "clang8-debug"
     },
     {
-      "name": "clang-debug-YourTestRunner",
-      "displayName": "Build YourTestRunner (Clang Debug)",
-      "configurePreset": "clang-debug",
+      "name": "clang8-debug-YourTestRunner",
+      "displayName": "Build YourTestRunner (Clang 8 Debug)",
+      "configurePreset": "clang8-debug",
       "targets": ["YourTestRunner"]
     }
   ],
   "testPresets": [
     {
-      "name": "clang-debug",
-      "displayName": "Test (Clang Debug)",
-      "configurePreset": "clang-debug"
+      "name": "clang8-debug",
+      "displayName": "Test (Clang 8 Debug)",
+      "configurePreset": "clang8-debug"
     }
   ]
 }
