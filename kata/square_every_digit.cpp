@@ -1,4 +1,5 @@
 #include <string>
+#include <stack>
 #include <bits/stdc++.h>
 
 
@@ -8,16 +9,20 @@ int square_digits(int num) {
     // Handle zero explicitly to avoid converting an empty string with stoi
     if (num == 0) return 0;
 
+    stack<string> s;
     string response;
 
     while (num > 0) {
         const int digit = num % 10;
         num /= 10;
 
-        response += to_string(digit * digit);
+        s.push(to_string(digit * digit));
     }
 
-    reverse(response.begin(), response.end());
+    while (!s.empty()) {
+        response += s.top();
+        s.pop();
+    }
 
     return stoi(response);
 }
