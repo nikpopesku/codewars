@@ -22,7 +22,8 @@ add_library(kata STATIC
 #    kata/find_the_vowels.cpp
 #    kata/valid_parentheses.cpp
 #    kata/square_every_digit.cpp
-    kata/isograms.cpp
+#    kata/isograms.cpp
+    kata/mumbling.cpp
 )
 
 # Test executable containing all test files
@@ -31,7 +32,8 @@ add_executable(YourTestRunner
 #    tests/find_the_vowels.cpp
 #    tests/valid_parentheses.cpp
 #    tests/square_every_digit.cpp
-    tests/isograms.cpp
+#    tests/isograms.cpp
+    tests/mumbling.cpp
 )
 
 # Link Catch2 main and your library
