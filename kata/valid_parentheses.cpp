@@ -17,4 +17,6 @@ bool validParentheses(const std::string &str) {
             s.pop();
         }
     }
+
+    return s.empty();
 }
