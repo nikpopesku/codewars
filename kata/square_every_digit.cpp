@@ -5,6 +5,9 @@
 using namespace std;
 
 int square_digits(int num) {
+    // Handle zero explicitly to avoid converting an empty string with stoi
+    if (num == 0) return 0;
+
     string response;
 
     while (num > 0) {
