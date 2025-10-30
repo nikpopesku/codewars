@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool validParentheses(const std::string& str) {
+bool validParentheses(const std::string &str) {
     stack<char> s;
 
     for (auto &c: str) {
