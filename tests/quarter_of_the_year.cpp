@@ -1,13 +1,14 @@
-#include <catch2/catch_test_macros.hpp>
-
 // Declaration to use the function implemented in quarter_of_the_year.cpp
 int quarter_of(const int month);
+#include "cw_compat.hpp"
 
-TEST_CASE("quarter_of basic cases") {
-    REQUIRE(quarter_of(1) == 1);
-    REQUIRE(quarter_of(3) == 1);
-    REQUIRE(quarter_of(5) == 2);
-    REQUIRE(quarter_of(7) == 3);
-    REQUIRE(quarter_of(9) == 3);
-    REQUIRE(quarter_of(11) == 4);
-}
+Describe(Sample_tests) {
+    It(Base_cases) {
+        Assert::That(quarter_of(1), Equals(1));
+        Assert::That(quarter_of(3), Equals(1));
+        Assert::That(quarter_of(5), Equals(2));
+        Assert::That(quarter_of(7), Equals(3));
+        Assert::That(quarter_of(9), Equals(3));
+        Assert::That(quarter_of(11), Equals(4));
+    }
+};

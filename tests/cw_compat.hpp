@@ -11,10 +11,19 @@
 #define Equals(expected) expected
 #define ExtraMessage(msg) (msg)
 
-namespace cw_compat {
-    inline void dotest(const std::string& str, bool expected) {
-        bool actual = validParentheses(str);
-        INFO("Incorrect answer for input = \"" << str << "\"");
+//namespace cw_compat {
+//    inline void dotest(const std::string& str, bool expected) {
+//        bool actual = validParentheses(str);
+//        INFO("Incorrect answer for input = \"" << str << "\"");
+//        REQUIRE(actual == expected);
+//    }
+//}
+
+// Provide Assert::That(...) API similar to Codewars
+namespace Assert {
+    template <typename Actual, typename Expected>
+    inline void That(const Actual& actual, const Expected& expected, const std::string& msg = "") {
+        if (!msg.empty()) INFO(msg);
         REQUIRE(actual == expected);
     }
 }
