@@ -4,11 +4,11 @@
 using namespace std;
 
 bool validParentheses(const std::string& str) {
-    std::stack s;
+    stack<char> s;
 
     for (auto &c: str) {
         if (c == '(') {
-            s.push_back(c);
+            s.push(c);
         } else {
             if (s.empty()) {
                 return false;
