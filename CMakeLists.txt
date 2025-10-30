@@ -21,7 +21,8 @@ add_library(kata STATIC
 #    kata/quarter_of_the_year.cpp
 #    kata/find_the_vowels.cpp
 #    kata/valid_parentheses.cpp
-    kata/square_every_digit.cpp
+#    kata/square_every_digit.cpp
+    kata/isograms.cpp
 )
 
 # Test executable containing all test files
@@ -29,7 +30,8 @@ add_executable(YourTestRunner
 #    tests/quarter_of_the_year.cpp
 #    tests/find_the_vowels.cpp
 #    tests/valid_parentheses.cpp
-    tests/square_every_digit.cpp
+#    tests/square_every_digit.cpp
+    tests/isograms.cpp
 )
 
 # Link Catch2 main and your library
