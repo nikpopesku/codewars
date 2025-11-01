@@ -22,7 +22,7 @@ add_library(kata STATIC
     tests/find_the_vowels.cpp
 #    kata/valid_parentheses.cpp
 #    kata/square_every_digit.cpp
-#    kata/isograms.cpp
+    tests/isograms.cpp
     tests/mumbling.cpp
 )
 
@@ -32,7 +32,7 @@ add_executable(YourTestRunner
     tests/find_the_vowels.cpp
 #    tests/valid_parentheses.cpp
 #    tests/square_every_digit.cpp
-#    tests/isograms.cpp
+    tests/isograms.cpp
     tests/mumbling.cpp
 )
 

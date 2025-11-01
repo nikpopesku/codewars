@@ -1,7 +1,23 @@
-#include <string>
-
-bool is_isogram(const std::string& str);
 #include "cw_compat.hpp"
+#include <string>
+#include <set>
+
+using namespace std;
+
+bool is_isogram(const std::string &str) {
+    set<char> s;
+
+    for (auto c: str) {
+        c = tolower(c);
+        if (s.find(c) != s.end()) {
+            return false;
+        }
+
+        s.insert(c);
+    }
+
+    return true;
+}
 
 Describe(sample_test_cases)
 {
