@@ -18,21 +18,22 @@ option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 
 # Build the code under test as a library with all kata sources
 add_library(kata STATIC
-    kata/quarter_of_the_year.cpp
-    kata/find_the_vowels.cpp
-    kata/square_every_digit.cpp
-    kata/isograms.cpp
-    kata/mumbling.cpp
+    cpp/quarter_of_the_year.cpp
+    cpp/find_the_vowels.cpp
+    cpp/valid_parentheses.cpp
+    cpp/square_every_digit.cpp
+    cpp/isograms.cpp
+    cpp/mumbling.cpp
 )
 
 # Test executable containing all test files
 add_executable(YourTestRunner
-    kata/quarter_of_the_year.cpp
-    kata/find_the_vowels.cpp
-    kata/valid_parentheses.cpp
-    kata/square_every_digit.cpp
-    kata/isograms.cpp
-    kata/mumbling.cpp
+    cpp/quarter_of_the_year.cpp
+    cpp/find_the_vowels.cpp
+    cpp/valid_parentheses.cpp
+    cpp/square_every_digit.cpp
+    cpp/isograms.cpp
+    cpp/mumbling.cpp
 )
 
 # Link Catch2 main and your library
