@@ -20,7 +20,6 @@ option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 add_library(kata STATIC
     tests/quarter_of_the_year.cpp
     tests/find_the_vowels.cpp
-    kata/valid_parentheses.cpp
     tests/square_every_digit.cpp
     tests/isograms.cpp
     tests/mumbling.cpp
