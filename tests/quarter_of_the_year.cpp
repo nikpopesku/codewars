@@ -1,6 +1,7 @@
-// Declaration to use the function implemented in quarter_of_the_year.cpp
-int quarter_of(const int month);
 #include "cw_compat.hpp"
+int quarter_of(const int month) {
+    return ((month - 1) / 3) + 1;
+}
 
 Describe(Sample_tests) {
     It(Base_cases) {

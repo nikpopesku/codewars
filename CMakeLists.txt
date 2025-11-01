@@ -18,7 +18,7 @@ option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 
 # Build the code under test as a library with all kata sources
 add_library(kata STATIC
-#    kata/quarter_of_the_year.cpp
+    tests/quarter_of_the_year.cpp
     tests/find_the_vowels.cpp
 #    kata/valid_parentheses.cpp
 #    kata/square_every_digit.cpp
@@ -28,7 +28,7 @@ add_library(kata STATIC
 
 # Test executable containing all test files
 add_executable(YourTestRunner
-#    tests/quarter_of_the_year.cpp
+    tests/quarter_of_the_year.cpp
     tests/find_the_vowels.cpp
 #    tests/valid_parentheses.cpp
 #    tests/square_every_digit.cpp
