@@ -25,7 +25,7 @@ add_library(kata STATIC
 #    cpp/isograms.cpp
 #    cpp/mumbling.cpp
 #    cpp/highest_and_lowest.cpp
-    cpp/Multiplesof3or5.cpp
+    cpp/multiples_of_3_or_5.cpp
 )
 
 # Test executable containing all test files
@@ -37,7 +37,7 @@ add_executable(YourTestRunner
 #    cpp/isograms.cpp
 #    cpp/mumbling.cpp
 #    cpp/highest_and_lowest.cpp
-    cpp/Multiplesof3or5.cpp
+    cpp/multiples_of_3_or_5.cpp
 )
 
 # Link Catch2 main and your library
