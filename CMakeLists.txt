@@ -27,7 +27,8 @@ add_library(kata STATIC
 #    cpp/highest_and_lowest.cpp
 #    cpp/multiples_of_3_or_5.cpp
 #    cpp/who_likes_it.cpp
-    cpp/take_10_minutes_walk.cpp
+#    cpp/take_10_minutes_walk.cpp
+    cpp/counting_duplicates.cpp
 )
 
 # Test executable containing all test files
@@ -41,7 +42,8 @@ add_executable(YourTestRunner
 #    cpp/highest_and_lowest.cpp
 #    cpp/multiples_of_3_or_5.cpp
 #    cpp/who_likes_it.cpp
-    cpp/take_10_minutes_walk.cpp
+#    cpp/take_10_minutes_walk.cpp
+    cpp/counting_duplicates.cpp
 )
 
 # Link Catch2 main and your library
