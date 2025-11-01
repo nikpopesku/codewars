@@ -26,7 +26,8 @@ add_library(kata STATIC
 #    cpp/mumbling.cpp
 #    cpp/highest_and_lowest.cpp
 #    cpp/multiples_of_3_or_5.cpp
-    cpp/who_likes_it.cpp
+#    cpp/who_likes_it.cpp
+    cpp/take_10_minutes_walk.cpp
 )
 
 # Test executable containing all test files
@@ -39,7 +40,8 @@ add_executable(YourTestRunner
 #    cpp/mumbling.cpp
 #    cpp/highest_and_lowest.cpp
 #    cpp/multiples_of_3_or_5.cpp
-    cpp/who_likes_it.cpp
+#    cpp/who_likes_it.cpp
+    cpp/take_10_minutes_walk.cpp
 )
 
 # Link Catch2 main and your library
