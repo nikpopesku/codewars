@@ -23,7 +23,7 @@ add_library(kata STATIC
 #    kata/valid_parentheses.cpp
 #    kata/square_every_digit.cpp
 #    kata/isograms.cpp
-    kata/mumbling.cpp
+    tests/mumbling.cpp
 )
 
 # Test executable containing all test files
