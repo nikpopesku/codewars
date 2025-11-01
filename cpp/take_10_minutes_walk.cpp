@@ -1,4 +1,3 @@
-#include "cw_compat.hpp"
 #include<vector>
 
 using namespace std;
@@ -43,6 +42,8 @@ bool isValidWalk(const std::vector<char>& walk)
 }
 
 using V = std::vector<char>;
+
+#include "cw_compat.hpp"
 
 Describe(IsValidWalk)
 {
