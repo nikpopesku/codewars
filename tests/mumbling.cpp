@@ -11,7 +11,7 @@ public:
 
         for (const auto c: s) {
             for (int i = 0; i < counter; ++i) {
-                response += i == 0 ? toupper(c) : tolower(c);
+                response += std::to_string(i == 0 ? toupper(c) : tolower(c));
             }
 
             if (counter < static_cast<int>(s.size())) {
