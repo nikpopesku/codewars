@@ -15,7 +15,7 @@ vector<string> towerBuilder(const unsigned nFloors)
             response[i] += ' ';
         }
 
-        for (unsigned int j = 0; j < i + 1; ++j)
+        for (unsigned int j = 0; j < 2 * i + 1; ++j)
         {
             response[i] += '*';
         }
