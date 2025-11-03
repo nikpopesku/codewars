@@ -1,10 +1,25 @@
 #include "cw_compat.hpp"
 #include <vector>
 
-char findMissingLetter(const std::vector<char>& chars)
+using namespace std;
+
+char findMissingLetter(const vector<char>& chars)
 {
-    // TODO: Find the missing char in the consecutive letter sequence and return it.
-    return ' ';
+    int counter = 0;
+    for (char i = chars[0]; i <= chars[chars.size() - 1]; ++i, ++counter)
+    {
+        if (chars[counter] != i)
+        {
+            return i;
+        }
+    }
+
+    if (tolower(chars[chars.size() - 1]) != 'z')
+    {
+        return static_cast<char>(chars[chars.size() - 1] + 1);
+    }
+
+    return static_cast<char>(chars[0] - 1);
 }
 
 

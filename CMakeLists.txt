@@ -29,7 +29,8 @@ add_library(kata STATIC
 #    cpp/who_likes_it.cpp
 #    cpp/take_10_minutes_walk.cpp
 #    cpp/counting_duplicates.cpp
-    cpp/detect_pangram.cpp
+#    cpp/detect_pangram.cpp
+    cpp/find_missing_letter.cpp
 )
 
 # Test executable containing all test files
@@ -45,7 +46,8 @@ add_executable(YourTestRunner
 #    cpp/who_likes_it.cpp
 #    cpp/take_10_minutes_walk.cpp
 #    cpp/counting_duplicates.cpp
-    cpp/detect_pangram.cpp
+#    cpp/detect_pangram.cpp
+    cpp/find_missing_letter.cpp
 )
 
 # Link Catch2 main and your library
