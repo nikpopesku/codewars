@@ -8,23 +8,25 @@ vector<string> towerBuilder(unsigned nFloors)
 {
     vector<string> response(nFloors);
 
-    for (int i = 0; i < nFloors; ++i)
+    for (unsigned int i = 0; i < nFloors; ++i)
     {
-        for (int j = 0; j < nFloors - i - 1; ++j)
+        for (unsigned int j = 0; j < nFloors - i - 1; ++j)
         {
             response[i] += ' ';
         }
 
-        for (int j = 0; j < i + 1; ++j)
+        for (unsigned int j = 0; j < i + 1; ++j)
         {
             response[i] += '*';
         }
 
-        for (int j = 0; j < nFloors - i - 1; ++j)
+        for (unsigned int j = 0; j < nFloors - i - 1; ++j)
         {
             response[i] += ' ';
         }
     }
+
+    return response;
 }
 
 Describe(Tests)
