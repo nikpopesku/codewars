@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<string> towerBuilder(unsigned nFloors)
+vector<string> towerBuilder(const unsigned nFloors)
 {
     vector<string> response(nFloors);
 
@@ -37,7 +37,7 @@ Describe(Tests)
 
         const vector<string> actual = towerBuilder(1);
 
-        Assert::That(actual, Is().EqualTo(expected));
+        Assert::That(actual, Equals(expected));
     }
 
     It(ExampleTest2)
@@ -46,7 +46,7 @@ Describe(Tests)
 
         const vector<string> actual = towerBuilder(2);
 
-        Assert::That(actual, Is().EqualTo(expected));
+        Assert::That(actual, Equals(expected));
     }
 
     It(ExampleTest3)
@@ -55,6 +55,6 @@ Describe(Tests)
 
         const vector<string> actual = towerBuilder(3);
 
-        Assert::That(actual, Is().EqualTo(expected));
+        Assert::That(actual, Equals(expected));
     }
 };
