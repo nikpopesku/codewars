@@ -10,6 +10,20 @@ vector<string> towerBuilder(unsigned nFloors)
 
     for (int i = 0; i < nFloors; ++i)
     {
+        for (int j = 0; j < nFloors - i - 1; ++j)
+        {
+            response[i] += ' ';
+        }
+
+        for (int j = 0; j < i + 1; ++j)
+        {
+            response[i] += '*';
+        }
+
+        for (int j = 0; j < nFloors - i - 1; ++j)
+        {
+            response[i] += ' ';
+        }
     }
 }
 
