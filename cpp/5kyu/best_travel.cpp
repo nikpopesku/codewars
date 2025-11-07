@@ -22,7 +22,7 @@ private:
             return;
         }
 
-        if (static_cast<int>(ls.size()) - 1 - index < k - count) {
+        if (static_cast<int>(ls.size()) - index < k - count) {
             return;
         }
 
@@ -32,7 +32,7 @@ private:
     }
 };
 
-int BestTravel::mx = 0;
+int BestTravel::mx = -1;
 
 
 void testequal(int ans, int sol) {
