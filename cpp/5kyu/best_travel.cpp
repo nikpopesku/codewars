@@ -1,29 +1,38 @@
 #include "../cw_compat.hpp"
-#include <string>
 
 using namespace std;
 
 
-string uint32_to_ip(const uint32_t ip) {
-    string response;
+class BestTravel {
+public:
+    static int chooseBestSum(int t, int k, std::vector<int> &ls);
+};
 
-    for (int i = 3; i >= 0; --i) {
-        const uint32_t mx = 255 << (i * 8);
-        uint32_t val = ip & mx;
-        val = val >> (i * 8);
-        response += to_string(val);
 
-        if (i != 0) {
-            response += ".";
-        }
-    }
-    return response;
+void testequal(int ans, int sol) {
+    Assert::That(ans, Equals(sol));
 }
 
-Describe(test_cases) {
-    It(sample_tests) {
-        Assert::That(uint32_to_ip(2154959208), Equals("128.114.17.104"));
-        Assert::That(uint32_to_ip(0), Equals("0.0.0.0"));
-        Assert::That(uint32_to_ip(2149583361), Equals("128.32.10.1"));
+Describe(Tests) {
+    It(Fixed_chooseBestSum) {
+        std::vector<int> ts = {50, 55, 56, 57, 58};
+        int n = BestTravel::chooseBestSum(163, 3, ts);
+        testequal(n, 163);
+        ts = {50};
+        n = BestTravel::chooseBestSum(163, 3, ts);
+        testequal(n, -1);
+        ts = {91, 74, 73, 85, 73, 81, 87};
+        n = BestTravel::chooseBestSum(230, 3, ts);
+        testequal(n, 228);
+        n = BestTravel::chooseBestSum(331, 2, ts);
+        testequal(n, 178);
+        n = BestTravel::chooseBestSum(331, 4, ts);
+        testequal(n, 331);
+        n = BestTravel::chooseBestSum(331, 5, ts);
+        testequal(n, -1);
+        n = BestTravel::chooseBestSum(331, 1, ts);
+        testequal(n, 91);
+        n = BestTravel::chooseBestSum(700, 8, ts);
+        testequal(n, -1);
     }
 };
