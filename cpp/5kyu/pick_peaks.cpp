@@ -36,15 +36,18 @@ Describe(your_pick_peaks_function) {
         PeakData actual, expected;
 
         actual = pick_peaks(std::vector<int>{3, 2, 3, 6, 4, 1, 2, 3, 2, 1, 2, 3});
-        expected = {.pos = {3, 7}, .peaks = {6, 3}};
+        expected.pos = {3, 7};
+        expected.peaks = {6, 3};
         Assert::That(actual, Equals(expected));
 
         actual = pick_peaks(std::vector<int>{1, 2, 2, 2, 1});
-        expected = {.pos = {1}, .peaks = {2}};
+        expected.pos = {1};
+        expected.peaks = {2};
         Assert::That(actual, Equals(expected));
 
         actual = pick_peaks(std::vector<int>{1, 2, 2, 2, 3});
-        expected = {.pos = {}, .peaks = {}};
+        expected.pos = {};
+        expected.peaks = {};
         Assert::That(actual, Equals(expected));
     }
 };
