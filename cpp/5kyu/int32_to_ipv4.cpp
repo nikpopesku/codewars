@@ -4,14 +4,18 @@
 using namespace std;
 
 
-string uint32_to_ip(uint32_t ip) {
+string uint32_to_ip(const uint32_t ip) {
     string response;
 
-    for (int i = 3; i >= 0; ++i) {
+    for (int i = 3; i >= 0; --i) {
         const uint32_t mx = 255 << (i * 8);
         uint32_t val = ip & mx;
         val = val >> (i * 8);
-        response += to_string(val) + ".";
+        response += to_string(val);
+
+        if (i != 0) {
+            response += ".";
+        }
     }
     return response;
 }
