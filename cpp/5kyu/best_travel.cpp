@@ -7,8 +7,8 @@ class BestTravel {
 public:
     static int mx;
 
-    static int chooseBestSum(int t, int k, const vector<int> &ls) {
-        backtrack(0, 0, 0, k, t);
+    static int chooseBestSum(const int t, const int k, const vector<int> &ls) {
+        backtrack(0, 0, 0, k, t, ls);
 
         return mx;
     }
