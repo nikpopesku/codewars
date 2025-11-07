@@ -8,6 +8,7 @@ public:
     static int mx;
 
     static int chooseBestSum(const int t, const int k, const vector<int> &ls) {
+        mx = -1;
         backtrack(0, 0, 0, k, t, ls);
 
         return mx;
@@ -16,7 +17,7 @@ public:
 private:
     void static backtrack(const int count, const int index, const int sum, const int &k, const int &t,
                           const vector<int> &ls) {
-        if (count == k && sum < t) {
+        if (count == k && sum <= t) {
             mx = max(mx, sum);
 
             return;
