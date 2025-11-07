@@ -18,6 +18,8 @@ private:
                           const vector<int> &ls) {
         if (count == k && sum < t) {
             mx = max(mx, sum);
+
+            return;
         }
 
         if (static_cast<int>(ls.size()) - 1 - index < k - count) {
@@ -25,7 +27,7 @@ private:
         }
 
         for (int i = index; i < static_cast<int>(ls.size()); ++i) {
-            backtrack(count + 1, i + 1, sum + ls[i], k, t);
+            backtrack(count + 1, i + 1, sum + ls[i], k, t, ls);
         }
     }
 };
