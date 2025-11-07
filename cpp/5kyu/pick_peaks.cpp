@@ -8,8 +8,27 @@ struct PeakData {
 };
 
 PeakData pick_peaks(const std::vector<int> &v) {
-    PeakData result;
-    return result;
+    bool local_max_left = false;
+    PeakData pd;
+    int local_max = 0;
+    int local_max_peak = 0;
+
+    for (int i = 1; i < static_cast<int>(v.size()); ++i) {
+        if (v[i] > v[i-1]) {
+            local_max_left = true;
+            local_max = i;
+            local_max_peak = v[i];
+
+            continue;
+        }
+        if (v[i] < v[i-1] && local_max_left) {
+            pd.pos.push_back(local_max);
+            pd.peaks.push_back(local_max_peak);
+            local_max_left = false;
+        }
+    }
+
+    return pd;
 }
 
 Describe(your_pick_peaks_function) {
