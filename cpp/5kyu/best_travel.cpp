@@ -5,8 +5,32 @@ using namespace std;
 
 class BestTravel {
 public:
-    static int chooseBestSum(int t, int k, std::vector<int> &ls);
+    static int mx;
+
+    static int chooseBestSum(int t, int k, const vector<int> &ls) {
+        backtrack(0, 0, 0, k, t);
+
+        return mx;
+    }
+
+private:
+    void static backtrack(const int count, const int index, const int sum, const int &k, const int &t,
+                          const vector<int> &ls) {
+        if (count == k && sum < t) {
+            mx = max(mx, sum);
+        }
+
+        if (static_cast<int>(ls.size()) - 1 - index < k - count) {
+            return;
+        }
+
+        for (int i = index; i < static_cast<int>(ls.size()); ++i) {
+            backtrack(count + 1, i + 1, sum + ls[i], k, t);
+        }
+    }
 };
+
+int BestTravel::mx = 0;
 
 
 void testequal(int ans, int sol) {
@@ -15,7 +39,7 @@ void testequal(int ans, int sol) {
 
 Describe(Tests) {
     It(Fixed_chooseBestSum) {
-        std::vector<int> ts = {50, 55, 56, 57, 58};
+        vector<int> ts = {50, 55, 56, 57, 58};
         int n = BestTravel::chooseBestSum(163, 3, ts);
         testequal(n, 163);
         ts = {50};
