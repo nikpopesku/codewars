@@ -7,6 +7,14 @@ struct PeakData {
     vector<int> pos, peaks;
 };
 
+// Enable comparison in tests using Assert::That(actual, Equals(expected))
+inline bool operator==(const PeakData& a, const PeakData& b) {
+    return a.pos == b.pos && a.peaks == b.peaks;
+}
+inline bool operator!=(const PeakData& a, const PeakData& b) {
+    return !(a == b);
+}
+
 PeakData pick_peaks(const std::vector<int> &v) {
     bool local_max_left = false;
     PeakData pd;
