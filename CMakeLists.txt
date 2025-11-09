@@ -18,51 +18,11 @@ option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 
 # Build the code under test as a library with all kata sources
 add_library(kata STATIC
-#    cpp/quarter_of_the_year.cpp
-#    cpp/find_the_vowels.cpp
-#    cpp/valid_parentheses.cpp
-#    cpp/square_every_digit.cpp
-#    cpp/isograms.cpp
-#    cpp/mumbling.cpp
-#    cpp/highest_and_lowest.cpp
-#    cpp/multiples_of_3_or_5.cpp
-#    cpp/who_likes_it.cpp
-#    cpp/take_10_minutes_walk.cpp
-#    cpp/counting_duplicates.cpp
-#    cpp/detect_pangram.cpp
-#    cpp/find_missing_letter.cpp
-#    cpp/6kyu/build_tower.cpp
-#    cpp/5kyu/moving_zeros_to_end.cpp
-#    cpp/5kyu/scramblies.cpp
-#    cpp/5kyu/integers_recreation_one.cpp
-#    cpp/5kyu/pick_peaks.cpp
-#    cpp/5kyu/int32_to_ipv4.cpp
-#    cpp/5kyu/best_travel.cpp
     cpp/5kyu/number_trailing_zeros_n.cpp
 )
 
 # Test executable containing all test files
 add_executable(YourTestRunner
-#    cpp/quarter_of_the_year.cpp
-#    cpp/find_the_vowels.cpp
-#    cpp/valid_parentheses.cpp
-#    cpp/square_every_digit.cpp
-#    cpp/isograms.cpp
-#    cpp/mumbling.cpp
-#    cpp/highest_and_lowest.cpp
-#    cpp/multiples_of_3_or_5.cpp
-#    cpp/who_likes_it.cpp
-#    cpp/take_10_minutes_walk.cpp
-#    cpp/counting_duplicates.cpp
-#    cpp/detect_pangram.cpp
-#    cpp/find_missing_letter.cpp
-#    cpp/6kyu/build_tower.cpp
-#    cpp/5kyu/moving_zeros_to_end.cpp
-#    cpp/5kyu/scramblies.cpp
-#    cpp/5kyu/integers_recreation_one.cpp
-#    cpp/5kyu/pick_peaks.cpp
-#    cpp/5kyu/int32_to_ipv4.cpp
-#    cpp/5kyu/best_travel.cpp
     cpp/5kyu/number_trailing_zeros_n.cpp
 )
 

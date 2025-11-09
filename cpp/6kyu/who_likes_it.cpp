@@ -1,6 +1,6 @@
 #include <string>
 #include <vector>
-#include "cw_compat.hpp"
+#include "../cw_compat.hpp"
 
 using namespace std;
 

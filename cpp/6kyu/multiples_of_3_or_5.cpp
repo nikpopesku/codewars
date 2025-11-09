@@ -1,4 +1,4 @@
-#include "cw_compat.hpp"
+#include "../cw_compat.hpp"
 
 int solution(const int number)
 {

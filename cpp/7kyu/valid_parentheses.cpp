@@ -2,7 +2,7 @@
 #include <string>
 bool validParentheses(const std::string &str);
 #include <stack>
-#include "cw_compat.hpp"
+#include "../cw_compat.hpp"
 using namespace std;
 
 bool validParentheses(const std::string &str) {

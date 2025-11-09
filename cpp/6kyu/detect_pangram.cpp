@@ -24,7 +24,7 @@ bool is_pangram(const std::string& s)
 }
 
 
-#include "cw_compat.hpp"
+#include "../cw_compat.hpp"
 
 Describe(sample_tests)
 {

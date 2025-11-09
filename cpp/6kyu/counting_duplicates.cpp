@@ -25,7 +25,7 @@ size_t duplicateCount(const string& in)
     return static_cast<size_t>(response);
 }
 
-#include "cw_compat.hpp"
+#include "../cw_compat.hpp"
 
 Describe(sample_test_cases)
 {
