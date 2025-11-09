@@ -6,9 +6,9 @@ using namespace std;
 vector<int> snail(const vector<vector<int>>& snail_map)
 {
     int start = 0;
-    int end = snail_map.size();
+    int end = static_cast<int>(snail_map.size());
 
-    if (start == end)
+    if (start + 1 == end && snail_map[0].empty())
     {
         return {};
     }
