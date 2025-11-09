@@ -5,6 +5,54 @@ using namespace std;
 
 vector<int> snail(const vector<vector<int>>& snail_map)
 {
+    int start = 0;
+    int end = snail_map.size();
+
+    if (start == end)
+    {
+        return {};
+    }
+
+    vector<int> response;
+
+    while (start + 1 <= end)
+    {
+        for (int j = start; j < end; ++j)
+        {
+            response.push_back(snail_map[start][j]);
+        }
+
+        if (end - start > 2)
+        {
+            for (int i = start + 1; i <= end - 2; ++i)
+            {
+                response.push_back(snail_map[i][end - 1]);
+            }
+        }
+
+        if (end - start > 1)
+        {
+            for (int j = end - 1; j >= start; --j)
+            {
+                response.push_back(snail_map[end - 1][j]);
+            }
+        }
+
+
+        if (end - start > 2)
+        {
+            for (int i = end - 2; i >= start + 1; --i)
+            {
+                response.push_back(snail_map[i][start]);
+            }
+        }
+
+        ++start;
+        --end;
+    }
+
+
+    return response;
 }
 
 
