@@ -5,11 +5,6 @@ using namespace std;
 
 long zeros(const long n)
 {
-    if (n == 0)
-    {
-        return 0;
-    }
-
     long response = 0;
 
     const double lg = log(n) / log(2);
