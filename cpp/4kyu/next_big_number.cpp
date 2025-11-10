@@ -8,27 +8,28 @@ long nextBigger(long n)
 {
     if (n < 10)
     {
-        return -1L;
+        return -1;
     }
 
     int last_digit = -1;
     unordered_set<int> s;
+    bool is_biggest = true;
 
     while (n > 0)
     {
         const int current_digit = n % 10;
         s.insert(current_digit);
 
-        if (current_digit < last_digit)
+        if (is_biggest && current_digit < last_digit)
         {
-            return -1;
+            is_biggest = false;
         }
 
         n = n / 10;
         last_digit = current_digit;
     }
 
-    if (s.size() == 1)
+    if (is_biggest || s.size() == 1)
     {
         return -1;
     }
