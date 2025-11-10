@@ -4,20 +4,46 @@
 
 using namespace std;
 
+void backtrack(const vector<long>& v, const long value, long& n, long& mx, unordered_set<long> ss)
+{
+    if (ss.size() == v.size())
+    {
+        if (value > n && (mx == -1 || value < mx))
+        {
+            mx = value;
+        }
+
+        return;
+    }
+
+    for (long i = 0; i < static_cast<long>(v.size()); ++i)
+    {
+        if (ss.count(i) == 0)
+        {
+            ss.insert(i);
+            backtrack(v, value * 10 + v[i], n, mx, ss);
+            ss.erase(i);
+        }
+
+    }
+}
+
 long nextBigger(long n)
 {
+    const long temp = n;
+
     if (n < 10)
     {
         return -1;
     }
 
-    int last_digit = -1;
-    unordered_set<int> s;
+    long last_digit = -1;
+    unordered_set<long> s;
     bool is_biggest = true;
 
     while (n > 0)
     {
-        const int current_digit = n % 10;
+        const long current_digit = n % 10;
         s.insert(current_digit);
 
         if (is_biggest && current_digit < last_digit)
@@ -33,6 +59,23 @@ long nextBigger(long n)
     {
         return -1;
     }
+
+    vector<long> v;
+
+    n = temp;
+    while (n)
+    {
+        v.push_back(n % 10);
+        n /= 10;
+    }
+
+    unordered_set<long> ss;
+    long mx = -1;
+
+    n = temp;
+    backtrack(v, 0, n, mx, ss);
+
+    return mx;
 }
 
 Describe(NextBiggerNumber)
