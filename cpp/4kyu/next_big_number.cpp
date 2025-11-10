@@ -5,7 +5,7 @@
 using namespace std;
 
 
-long nextBigger(long n)
+long nextBigger(const long n)
 {
     // 1. Convert to string
     std::string s = std::to_string(n);
