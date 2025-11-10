@@ -17,21 +17,12 @@ long nextBigger(long n)
 
     while (n > 0)
     {
-        int current_digit = n % 10;
+        const int current_digit = n % 10;
         s.insert(current_digit);
 
-        if (last_digit != -1)
-        {
-            if (current_digit < last_digit)
-            {
-                is_biggest = false;
-                break;
-            }
-
-            if (current_digit >= last_digit)
-            {
-                last_digit = current_digit;
-            }
+        if (current_digit < last_digit) {
+            is_biggest = false;
+            break;
         }
 
         n = n / 10;
