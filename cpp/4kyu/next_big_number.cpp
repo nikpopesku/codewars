@@ -11,7 +11,6 @@ long nextBigger(long n)
         return -1L;
     }
 
-    bool is_biggest = true;
     int last_digit = -1;
     unordered_set<int> s;
 
@@ -21,15 +20,14 @@ long nextBigger(long n)
         s.insert(current_digit);
 
         if (current_digit < last_digit) {
-            is_biggest = false;
-            break;
+            return -1;
         }
 
         n = n / 10;
         last_digit = current_digit;
     }
 
-    if (is_biggest || s.size() == 1)
+    if (s.size() == 1)
     {
         return -1;
     }
