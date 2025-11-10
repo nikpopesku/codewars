@@ -39,6 +39,9 @@ Describe(NextBiggerNumber)
 {
     It(BasicTests)
     {
+        Assert::That(nextBigger(531), Equals(-1));
+        Assert::That(nextBigger(9), Equals(-1));
+        Assert::That(nextBigger(111), Equals(-1));
         Assert::That(nextBigger(12), Equals(21));
         Assert::That(nextBigger(513), Equals(531));
         Assert::That(nextBigger(2017), Equals(2071));
