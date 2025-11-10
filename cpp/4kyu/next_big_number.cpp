@@ -19,7 +19,8 @@ long nextBigger(long n)
         const int current_digit = n % 10;
         s.insert(current_digit);
 
-        if (current_digit < last_digit) {
+        if (current_digit < last_digit)
+        {
             return -1;
         }
 
