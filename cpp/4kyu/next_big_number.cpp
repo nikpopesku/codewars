@@ -22,7 +22,6 @@ long nextBigger(long n)
 
         if (last_digit != -1)
         {
-
             if (current_digit < last_digit)
             {
                 is_biggest = false;
