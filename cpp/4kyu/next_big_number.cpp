@@ -1,46 +1,37 @@
 #include "../cw_compat.hpp"
-
-#include <unordered_set>
+#include <string>
+#include <algorithm>
 
 using namespace std;
 
 
 long nextBigger(const long n)
 {
-    // 1. Convert to string
-    std::string s = std::to_string(n);
-    int len = s.length();
+    const string s = to_string(n);
+    const int l = s.length();
 
-    // 2. Find the Pivot
-    // Iterate from the second-to-last digit down to the first
-    int i = len - 2;
-    while (i >= 0 && s[i] >= s[i + 1]) {
-        i--;
+    int i = l - 2;
+    while (i >= 0 && s[i] >= s[i + 1])
+    {
+        --i;
     }
 
-    // 3. Check for "No Answer"
-    // If i < 0, the whole string was in descending order
-    if (i < 0) {
+    if (i < 0)
+    {
         return -1;
     }
 
-    // 4. Find the Swap Digit
-    // Iterate from the last digit down to the pivot's position
-    int j = len - 1;
-    while (s[j] <= s[i]) {
-        j--;
+    int j = l - 1;
+    while (s[j] <= s[i])
+    {
+        --j;
     }
 
-    // 5. Swap
-    std::swap(s[i], s[j]);
+    swap(s[i], s[j]);
 
-    // 6. Sort (Reverse) the Suffix
-    // Reverse the part of the string *after* the pivot position 'i'
-    std::reverse(s.begin() + i + 1, s.end());
+    reverse(s.begin() + i + 1, s.end());
 
-    // 7. Convert back to long
-    // Using stoll for "string to long long", which handles 'long'
-    return std::stoll(s);
+    return stoll(s);
 }
 
 Describe(NextBiggerNumber)
