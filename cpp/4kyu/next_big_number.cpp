@@ -1,13 +1,11 @@
 #include "../cw_compat.hpp"
-#include <string>
-#include <algorithm>
 
 using namespace std;
 
 
 long nextBigger(const long n)
 {
-    const string s = to_string(n);
+    string s = to_string(n);
     const int l = s.length();
 
     int i = l - 2;
