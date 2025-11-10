@@ -1,6 +1,6 @@
-#include <unordered_set>
-
 #include "../cw_compat.hpp"
+
+#include <unordered_set>
 
 using namespace std;
 
