@@ -1,9 +1,48 @@
+#include <unordered_set>
+
 #include "../cw_compat.hpp"
 
 using namespace std;
 
-long nextBigger(long n) {
-    return n;
+long nextBigger(long n)
+{
+    if (n < 10)
+    {
+        return -1L;
+    }
+
+    bool is_biggest = true;
+    int last_digit = -1;
+    unordered_set<int> s;
+
+    while (n > 0)
+    {
+        int current_digit = n % 10;
+        s.insert(current_digit);
+
+        if (last_digit != -1)
+        {
+
+            if (current_digit < last_digit)
+            {
+                is_biggest = false;
+                break;
+            }
+
+            if (current_digit >= last_digit)
+            {
+                last_digit = current_digit;
+            }
+        }
+
+        n = n / 10;
+        last_digit = current_digit;
+    }
+
+    if (is_biggest || s.size() == 1)
+    {
+        return -1;
+    }
 }
 
 Describe(NextBiggerNumber)
