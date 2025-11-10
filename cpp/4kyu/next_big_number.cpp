@@ -31,6 +31,35 @@ void backtrack(const vector<long>& v, const long value, long& n, long& mx, unord
 long nextBigger(long n)
 {
     const long temp = n;
+
+    if (n < 10)
+    {
+        return -1;
+    }
+
+    long last_digit = -1;
+    unordered_set<long> s;
+    bool is_biggest = true;
+
+    while (n > 0)
+    {
+        const long current_digit = n % 10;
+        s.insert(current_digit);
+
+        if (is_biggest && current_digit < last_digit)
+        {
+            is_biggest = false;
+        }
+
+        n = n / 10;
+        last_digit = current_digit;
+    }
+
+    if (is_biggest || s.size() == 1)
+    {
+        return -1;
+    }
+
     vector<long> v;
 
     n = temp;
