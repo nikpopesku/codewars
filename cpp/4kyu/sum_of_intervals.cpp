@@ -32,10 +32,15 @@ int sum_intervals(vector<pair<int, int>> intervals)
     });
 
     int response = 0;
+    int current_value = intervals[0].first;
 
     for (auto& [fst, snd] : intervals)
     {
-        response += snd - fst;
+        if (snd > current_value)
+        {
+            response += snd - max(current_value, fst);
+            current_value = snd;
+        }
     }
 
     return response;
