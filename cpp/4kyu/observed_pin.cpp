@@ -6,21 +6,40 @@
 
 using namespace std;
 
+const unordered_map<char, vector<char>> mp{
+    {'1', {'1', '2', '4'}},
+    {'2', {'1', '2', '3', '5'}},
+    {'3', {'2', '3', '6'}},
+    {'4', {'1', '4', '5', '7'}},
+    {'5', {'2', '4', '5', '6', '8'}},
+    {'6', {'3', '5', '6', '9'}},
+    {'7', {'4', '7', '8'}},
+    {'8', {'0', '5', '7', '8', '9'}},
+    {'9', {'6', '8', '9'}},
+    {'0', {'0', '8'}},
+};
+vector<string> values;
+
+void backtrack(const string& combination, string& observed, const int index)
+{
+    if (index == static_cast<int>(observed.size()))
+    {
+        values.push_back(combination);
+
+        return;
+    }
+
+    for (char& c : mp[observed[index]])
+    {
+        backtrack(combination + c, observed, index + 1);
+    }
+}
+
 vector<string> get_pins(string observed)
 {
-    unordered_map<char, vector<char>> mp{
-        {'1', {'1', '2', '4'}},
-        {'2', {'1', '2', '3', '5'}},
-        {'3', {'2', '3', '6'}},
-        {'4', {'1', '4', '5', '7'}},
-        {'5', {'2', '4', '5', '6', '8'}},
-        {'6', {'3', '5', '6', '9'}},
-        {'7', {'4', '7', '8'}},
-        {'8', {'0', '5', '7', '8', '9'}},
-        {'9', {'6', '8', '9'}},
-        {'0', {'0', '8'}},
-    };
-    return {};
+    backtrack(values, observed, 0);
+
+    return values;
 }
 
 
