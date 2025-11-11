@@ -29,7 +29,7 @@ void backtrack(const string& combination, string& observed, const int index)
         return;
     }
 
-    for (char& c : mp[observed[index]])
+    for (const char& c : mp[observed[index]])
     {
         backtrack(combination + c, observed, index + 1);
     }
@@ -37,7 +37,7 @@ void backtrack(const string& combination, string& observed, const int index)
 
 vector<string> get_pins(string observed)
 {
-    backtrack(values, observed, 0);
+    backtrack("", observed, 0);
 
     return values;
 }
