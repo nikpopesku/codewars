@@ -2,11 +2,19 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
 vector<string> get_pins(string observed)
 {
+    unordered_map<char, vector<char>> mp{
+        {'1', {'1', '2', '4'}},
+        {'2', {'1', '2', '3', '5'}},
+        {'3', {'2', '3', '6'}},
+
+    };
+    return {};
 }
 
 
