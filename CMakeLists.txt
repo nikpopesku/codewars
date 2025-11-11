@@ -20,14 +20,16 @@ option(ENABLE_SANITIZERS "Enable Address/UB sanitizers (GCC/Clang)" OFF)
 add_library(kata STATIC
 #    cpp/5kyu/number_trailing_zeros_n.cpp
 #    cpp/4kyu/snail_sort.cpp
-    cpp/4kyu/next_big_number.cpp
+#    cpp/4kyu/next_big_number.cpp
+    cpp/4kyu/observed_pin.cpp
 )
 
 # Test executable containing all test files
 add_executable(YourTestRunner
 #    cpp/5kyu/number_trailing_zeros_n.cpp
 #    cpp/4kyu/snail_sort.cpp
-    cpp/4kyu/next_big_number.cpp
+#    cpp/4kyu/next_big_number.cpp
+    cpp/4kyu/observed_pin.cpp
 )
 
 # Link Catch2 main and your library
