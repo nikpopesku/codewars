@@ -15,7 +15,7 @@ int sum_intervals(vector<pair<int, int>> intervals)
 
         if (a.first > b.first)
         {
-            return -1;
+            return 0;
         }
 
         if (a.second < b.second)
@@ -25,10 +25,10 @@ int sum_intervals(vector<pair<int, int>> intervals)
 
         if (a.second < b.second)
         {
-            return -1;
+            return 0;
         }
 
-        return 0;
+        return 1;
     });
 
     int response = 0;
@@ -50,7 +50,8 @@ Describe(Sample_Tests)
 {
     It(Tests)
     {
-        vector<pair<int, int>> intervals = {{1, 5}};
+        vector<pair<int, int>> intervals;
+        intervals = {{1, 5}};
         Assert::That(sum_intervals(intervals), Equals(4));
 
         intervals = {{1, 5}, {6, 10}};
