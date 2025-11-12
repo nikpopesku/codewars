@@ -4,10 +4,20 @@
 
 using namespace std;
 
-int path_finder(string maze) {
-    // TODO: Return the minimal number of steps required to reach the exit located at
-    // (n - 1, n - 1) from the initial position (0, 0) in an n × n maze if possible and
-    // -1 otherwise
+int path_finder(const string &maze) {
+    stringstream ss(maze);
+    string s;
+    vector<string> mz;
+
+    while (std::getline(ss, s, ',')) {
+        mz.push_back(s);
+    }
+
+
+    for (int i = 0; i < static_cast<int>(mz.size()); ++i) {
+        for (int j = 0; j < static_cast<int>(mz[0].size()); ++j) {
+        }
+    }
     return -1;
 }
 
