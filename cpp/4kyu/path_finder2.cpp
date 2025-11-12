@@ -48,16 +48,9 @@ int path_finder(const string &maze) {
                 st.push({nd.first, nd.second, count + 1});
             }
         }
-
-
-        if (visited.count(s)) {
-            continue;
-        }
-
-        st.push({i, j});
     }
 
-    return -1;
+    return response;
 }
 
 
