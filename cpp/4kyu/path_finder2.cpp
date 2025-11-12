@@ -1,6 +1,7 @@
 #include "../cw_compat.hpp"
 #include <iostream>
 #include <string>
+#include <unordered_set>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ int path_finder(const string &maze) {
     stringstream ss(maze);
     string s;
     vector<string> mz;
+    unordered_set<pair<int, int>> visited = {};
 
     while (std::getline(ss, s, ',')) {
         mz.push_back(s);
