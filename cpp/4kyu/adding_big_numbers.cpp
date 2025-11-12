@@ -9,11 +9,10 @@ string add(const string &a, const string &b) {
     int index_a = a.size() - 1;
     int index_b = b.size() - 1;
     int previous_number = 0;
-    int num_a, num_b;
 
     while (index_a >= 0 || index_b >= 0) {
-        num_a = index_a >= 0 ? static_cast<int>(a[index_a]) : 0;
-        num_b = index_b >= 0 ? static_cast<int>(b[index_b]) : 0;
+        int num_a = index_a >= 0 ? static_cast<int>(a[index_a]) : 0;
+        int num_b = index_b >= 0 ? static_cast<int>(b[index_b]) : 0;
 
         const int current_sum = num_a + num_b + previous_number;
         response += to_string(current_sum % 10);
