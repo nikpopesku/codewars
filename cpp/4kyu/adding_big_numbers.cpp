@@ -4,15 +4,20 @@
 using namespace std;
 
 
+string add(const string &a, const string &b) {
+    string response;
+    int index_a = a.size() - 1;
+    int index_b = b.size() - 1;
 
-string add(const string& a, const string& b) {
-    return "";
+    while (index_a >= 0 || index_b >= 0) {
+
+    }
+
+    return response;
 }
 
-Describe(Sample_Tests)
-{
-    It(Tests)
-    {
+Describe(Sample_Tests) {
+    It(Tests) {
         Assert::That(add("123", "456"), Equals("579"));
         Assert::That(add("0", "0"), Equals("0"));
         Assert::That(add("99", "2"), Equals("101"));
