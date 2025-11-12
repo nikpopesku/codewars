@@ -10,12 +10,12 @@ int path_finder(const string &maze) {
     string s;
     vector<string> mz;
     unordered_set<string> visited = {"0_0"};
-    int N = mz.size();
 
     while (std::getline(ss, s, '\n')) {
         mz.push_back(s);
     }
 
+    int N = mz.size();
     pair position = {0, 0};
     stack<tuple<int, int, int> > st;
     st.push({0, 0, 0});
