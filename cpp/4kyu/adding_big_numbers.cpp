@@ -1,8 +1,9 @@
 #include "../cw_compat.hpp"
+#include <string>
 
 using namespace std;
 
-#include <string>
+
 
 string add(const string& a, const string& b) {
     return "";
