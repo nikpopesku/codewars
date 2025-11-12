@@ -9,7 +9,7 @@ int path_finder(const string &maze) {
     stringstream ss(maze);
     string s;
     vector<string> mz;
-    unordered_set<pair<int, int>> visited = {};
+    unordered_set<string> visited;
 
     while (std::getline(ss, s, ',')) {
         mz.push_back(s);
@@ -18,6 +18,14 @@ int path_finder(const string &maze) {
 
     for (int i = 0; i < static_cast<int>(mz.size()); ++i) {
         for (int j = 0; j < static_cast<int>(mz[0].size()); ++j) {
+            if (mz[i][j] == 'W') {
+                continue;
+            }
+
+            s = to_string(i) + '_' + to_string(j);
+            if (visited.count(s)) {
+                continue;
+            }
         }
     }
     return -1;
