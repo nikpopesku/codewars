@@ -21,7 +21,7 @@ int path_finder(const string &maze) {
     st.push({0, 0, 0});
 
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    int response = N * N;
+    int response = -1;
 
     while (!st.empty()) {
         auto [i, j, count] = st.top();
@@ -31,11 +31,15 @@ int path_finder(const string &maze) {
         }
 
         if (i == N - 1 && j == N - 1) {
-            response = min(response, count);
+            if (response == -1) {
+                response = count;
+            } else {
+                response = min(response, count);
+            }
         }
 
         for (auto &[fst, snd]: directions) {
-            pair nd = {position.first + fst, position.second + snd};
+            const pair nd = {position.first + fst, position.second + snd};
 
             if (nd.first >= 0 && nd.first < static_cast<int>(mz.size())
                 && nd.second >= 0 && nd.second < static_cast<int>(mz.size()) && mz[nd.first][nd.second] != 'W' &&
