@@ -10,9 +10,9 @@ int path_finder(const string &maze) {
     string s;
     vector<string> mz;
     unordered_set<string> visited;
-    int N = N;
+    int N = mz.size();
 
-    while (std::getline(ss, s, ',')) {
+    while (std::getline(ss, s, '\n')) {
         mz.push_back(s);
     }
 
