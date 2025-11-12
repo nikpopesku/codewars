@@ -40,10 +40,10 @@ int path_finder(const string &maze) {
 
         for (auto &[fst, snd]: directions) {
             const pair nd = {position.first + fst, position.second + snd};
-            s = to_string(i) + '_' + to_string(j);
+            s = to_string(nd.first) + '_' + to_string(nd.second);
 
             if (nd.first >= 0 && nd.first < N && nd.second >= 0 &&
-                nd.second < N && mz[nd.first][nd.second] != 'W' && visited.count(s) == 0) {
+                nd.second < N && mz[nd.first][nd.second] == '.' && visited.count(s) == 0) {
                 visited.insert(s);
                 st.push({nd.first, nd.second, count + 1});
             }
