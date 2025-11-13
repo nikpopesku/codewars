@@ -1,5 +1,4 @@
 #include "../cw_compat.hpp"
-#include <string>
 
 using namespace std;
 
