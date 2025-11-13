@@ -22,7 +22,7 @@ int get_row(char a) {
         case 'h':
             return 7;
         default:
-            throw logic_error("Unknown value provided " . a);
+            throw logic_error(string("Unknown value provided ") + a);
     }
 }
 
