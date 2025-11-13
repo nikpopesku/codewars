@@ -3,26 +3,7 @@
 using namespace std;
 
 int get_row(const char a) {
-    switch (a) {
-        case 'a':
-            return 0;
-        case 'b':
-            return 1;
-        case 'c':
-            return 2;
-        case 'd':
-            return 3;
-        case 'e':
-            return 4;
-        case 'f':
-            return 5;
-        case 'g':
-            return 6;
-        case 'h':
-            return 7;
-        default:
-            throw logic_error(string("Unknown value provided ") + a);
-    }
+    return a - 'a';
 }
 
 int knight(const string &start, const string &finish) {
@@ -55,6 +36,7 @@ int knight(const string &start, const string &finish) {
 
 Describe(Sample_Tests) {
     It(Tests) {
+        Assert::That(knight("a1", "a1"), Equals(0));
         Assert::That(knight("a1", "c1"), Equals(2));
         Assert::That(knight("a1", "f1"), Equals(3));
         Assert::That(knight("a1", "f3"), Equals(3));
