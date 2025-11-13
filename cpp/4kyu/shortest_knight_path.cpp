@@ -3,8 +3,31 @@
 
 using namespace std;
 
+int get_row(char a) {
+    switch (a) {
+        case 'a':
+            return 0;
+        case 'b':
+            return 1;
+        case 'c':
+            return 2;
+        case 'd':
+            return 3;
+        case 'e':
+            return 4;
+        case 'f':
+            return 5;
+        case 'g':
+            return 6;
+        case 'h':
+            return 7;
+        default:
+            throw logic_error("Unknown value provided " . a);
+    }
+}
+
 int knight(string start, string finish) {
-    return 0;
+
 }
 
 Describe(Sample_Tests)
