@@ -39,7 +39,6 @@ int path_finder(const string &maze) {
 
         for (auto &[fst, snd]: directions) {
             const pair nd = {row + fst, col + snd};
-            s = to_string(nd.first) + '_' + to_string(nd.second);
 
             if (nd.first >= 0 && nd.first < N && nd.second >= 0 &&
                 nd.second < N && mz[nd.first][nd.second] == '.' && adjusted) {
