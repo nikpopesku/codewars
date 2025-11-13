@@ -24,7 +24,8 @@ add_library(kata STATIC
 #    cpp/4kyu/observed_pin.cpp
 #    cpp/4kyu/sum_of_intervals.cpp
 #    cpp/4kyu/adding_big_numbers.cpp
-    cpp/4kyu/path_finder2.cpp
+#    cpp/4kyu/path_finder2.cpp
+    cpp/4kyu/shortest_knight_path.cpp
 )
 
 # Test executable containing all test files
@@ -35,7 +36,8 @@ add_executable(YourTestRunner
 #    cpp/4kyu/observed_pin.cpp
 #    cpp/4kyu/sum_of_intervals.cpp
 #    cpp/4kyu/adding_big_numbers.cpp
-    cpp/4kyu/path_finder2.cpp
+#    cpp/4kyu/path_finder2.cpp
+    cpp/4kyu/shortest_knight_path.cpp
 )
 
 # Link Catch2 main and your library
