@@ -14,21 +14,22 @@ int path_finder(const string &maze) {
         mz.push_back(s);
     }
 
-    int N = static_cast<int>(mz.size());
+    const int N = static_cast<int>(mz.size());
     stack<tuple<int, int, int> > st;
-
-    if (mz[0][0] != 'W') {
-        st.emplace(0, 0, 0);
-    }
+    st.emplace(0, 0, 0);
 
     vector dp(N, vector(N, -1));
-    dp[0][0] = 0;
 
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     while (!st.empty()) {
         auto [row, col, count] = st.top();
         st.pop();
+
+        if (mz[0][0] == 'W') {
+            continue;
+        }
+
 
         bool adjusted = false;
 
