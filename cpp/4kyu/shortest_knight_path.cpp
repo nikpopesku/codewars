@@ -7,8 +7,8 @@ int get_row(const char a) {
 }
 
 int knight(const string &start, const string &finish) {
-    pair bg = {get_row(start[0]), start[1] - '0'};
-    const pair end = {get_row(finish[0]), finish[1] - '0'};
+    pair bg = {get_row(start[0]), start[1] - '1'};
+    const pair end = {get_row(finish[0]), finish[1] - '1'};
 
     vector dp(8, vector(8, 64));
     stack<tuple<int, int, int> > st;
