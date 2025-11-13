@@ -15,22 +15,21 @@ int path_finder(const string &maze) {
         mz.push_back(s);
     }
 
-    int N = mz.size();
-    pair position = {0, 0};
+    int N = static_cast<int>(mz.size());
     stack<tuple<int, int, int> > st;
-    st.push({0, 0, 0});
+    st.emplace(0, 0, 0);
 
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     int response = -1;
 
     while (!st.empty()) {
-        auto [i, j, count] = st.top();
+        auto [row, col, count] = st.top();
         st.pop();
-        if (mz[i][j] == 'W') {
+        if (mz[row][col] == 'W') {
             continue;
         }
 
-        if (i == N - 1 && j == N - 1) {
+        if (row == N - 1 && col == N - 1) {
             if (response == -1) {
                 response = count;
             } else {
@@ -39,13 +38,13 @@ int path_finder(const string &maze) {
         }
 
         for (auto &[fst, snd]: directions) {
-            const pair nd = {position.first + fst, position.second + snd};
+            const pair nd = {row + fst, col + snd};
             s = to_string(nd.first) + '_' + to_string(nd.second);
 
             if (nd.first >= 0 && nd.first < N && nd.second >= 0 &&
                 nd.second < N && mz[nd.first][nd.second] == '.' && visited.count(s) == 0) {
                 visited.insert(s);
-                st.push({nd.first, nd.second, count + 1});
+                st.emplace(nd.first, nd.second, count + 1);
             }
         }
     }
