@@ -9,7 +9,6 @@ int path_finder(const string &maze) {
     stringstream ss(maze);
     string s;
     vector<string> mz;
-    unordered_set<string> visited = {"0_0"};
 
     while (std::getline(ss, s, '\n')) {
         mz.push_back(s);
@@ -17,24 +16,25 @@ int path_finder(const string &maze) {
 
     int N = static_cast<int>(mz.size());
     stack<tuple<int, int, int> > st;
-    st.emplace(0, 0, 0);
+
+    if (mz[0][0] != 'W') {
+        st.emplace(0, 0, 0);
+    }
+
+    vector dp(N, vector(N, -1));
+    dp[0][0] = 0;
 
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    int response = -1;
 
     while (!st.empty()) {
         auto [row, col, count] = st.top();
         st.pop();
-        if (mz[row][col] == 'W') {
-            continue;
-        }
 
-        if (row == N - 1 && col == N - 1) {
-            if (response == -1) {
-                response = count;
-            } else {
-                response = min(response, count);
-            }
+        bool adjusted = false;
+
+        if (dp[row][col] == -1 || count < dp[row][col]) {
+            dp[row][col] = count;
+            adjusted = true;
         }
 
         for (auto &[fst, snd]: directions) {
@@ -42,14 +42,13 @@ int path_finder(const string &maze) {
             s = to_string(nd.first) + '_' + to_string(nd.second);
 
             if (nd.first >= 0 && nd.first < N && nd.second >= 0 &&
-                nd.second < N && mz[nd.first][nd.second] == '.' && visited.count(s) == 0) {
-                visited.insert(s);
-                st.emplace(nd.first, nd.second, count + 1);
+                nd.second < N && mz[nd.first][nd.second] == '.' && adjusted) {
+                st.emplace(nd.first, nd.second, dp[row][col] + 1);
             }
         }
     }
 
-    return response;
+    return dp[N - 1][N - 1];
 }
 
 
