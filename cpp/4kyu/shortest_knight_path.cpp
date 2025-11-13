@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int get_row(char a) {
+int get_row(const char a) {
     switch (a) {
         case 'a':
             return 0;
@@ -26,14 +26,17 @@ int get_row(char a) {
     }
 }
 
-int knight(string start, string finish) {
+int knight(const string& start, const string &finish) {
+    pair bg = {get_row(start[0]), start[1] - '0'};
+    const pair end = {get_row(finish[0]), finish[1] - '0'};
 
+    vector dp(8, vector(8, 64));
+
+    return dp[end.first][end.second];
 }
 
-Describe(Sample_Tests)
-{
-    It(Tests)
-    {
+Describe(Sample_Tests) {
+    It(Tests) {
         Assert::That(knight("a1", "c1"), Equals(2));
         Assert::That(knight("a1", "f1"), Equals(3));
         Assert::That(knight("a1", "f3"), Equals(3));
