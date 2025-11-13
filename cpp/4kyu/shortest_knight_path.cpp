@@ -31,6 +31,15 @@ int knight(const string& start, const string &finish) {
     const pair end = {get_row(finish[0]), finish[1] - '0'};
 
     vector dp(8, vector(8, 64));
+    stack<tuple<int, int, int>> st;
+    st.emplace(bg.first, bg.second, 0);
+
+    while (!st.empty()) {
+        auto [row, col, count] = st.top();
+        st.pop();
+
+
+    }
 
     return dp[end.first][end.second];
 }
