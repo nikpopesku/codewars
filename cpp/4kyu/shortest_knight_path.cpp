@@ -43,7 +43,8 @@ int knight(const string &start, const string &finish) {
             dp[row][col] = count;
 
             for (auto &[fst, snd]: directions) {
-                if (pair nd = {fst + row, snd + col}; nd.first >= 0 && nd.first < 8 && nd.second >= 0 && nd.second < 8) {
+                if (pair nd = {fst + row, snd + col};
+                    nd.first >= 0 && nd.first < 8 && nd.second >= 0 && nd.second < 8) {
                     st.emplace(nd.first, nd.second, count + 1);
                 }
             }
