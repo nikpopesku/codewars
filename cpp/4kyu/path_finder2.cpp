@@ -1,7 +1,4 @@
 #include "../cw_compat.hpp"
-#include <iostream>
-#include <string>
-#include <unordered_set>
 
 using namespace std;
 
