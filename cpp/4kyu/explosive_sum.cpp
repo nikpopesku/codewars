@@ -20,10 +20,13 @@ ull exp_sum(const unsigned int n)
     {
         for (unsigned int col = 1; col <= n; ++col)
         {
-            if (col > row) {
+            if (col > row)
+            {
                 // Can't use col if col > row, so only consider partitions without col
                 dp[row][col] = dp[row][col - 1];
-            } else {
+            }
+            else
+            {
                 // dp[row][col - 1]: partitions that don't use col
                 // dp[row - col][col]: partitions that use col at least once
                 dp[row][col] = dp[row][col - 1] + dp[row - col][col];
