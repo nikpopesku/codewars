@@ -8,19 +8,19 @@ ull exp_sum(const unsigned int n)
 {
     vector dp(n + 1, vector<ull>(n + 1, 0));
 
-    for (unsigned int col = 1; col < n; ++col)
+    for (unsigned int col = 1; col <= n; ++col)
     {
         dp[0][col] = 1;
     }
 
-    for (unsigned int row = 1; row < n; ++row)
+    for (unsigned int row = 1; row <= n; ++row)
     {
         dp[row][0] = 0;
     }
 
-    for (unsigned int row = 1; row < n; ++row)
+    for (unsigned int row = 1; row <= n; ++row)
     {
-        for (unsigned int col = 1; col < n; ++col)
+        for (unsigned int col = 1; col <= n; ++col)
         {
             dp[row][col] = dp[row][col - 1] + dp[row - 1][col];
         }
