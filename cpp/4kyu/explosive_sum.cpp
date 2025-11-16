@@ -13,7 +13,7 @@ ull exp_sum(const unsigned int n)
 
     vector dp(n + 1, vector<ull>(n + 1, 0));
 
-    for (ull col = 0; col < n; ++col)
+    for (ull col = 0; col <= n; ++col)
     {
         dp[0][col] = 1;
     }
