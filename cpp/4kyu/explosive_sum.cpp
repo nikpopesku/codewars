@@ -6,29 +6,28 @@ using ull = unsigned long long;
 
 ull exp_sum(const unsigned int n)
 {
-    // Edge case: There's exactly 1 way to partition 0 (empty partition)
-    if (n == 0) return 1;
+    if (n == 0)
+    {
+        return 1;
+    }
 
     vector dp(n + 1, vector<ull>(n + 1, 0));
 
-    for (unsigned int col = 0; col <= n; ++col)
+    for (ull col = 0; col < n; ++col)
     {
         dp[0][col] = 1;
     }
 
-    for (unsigned int row = 1; row <= n; ++row)
+    for (ull row = 1; row < n; ++row)
     {
-        for (unsigned int col = 1; col <= n; ++col)
+        for (ull col = 1; col < n; ++col)
         {
             if (col > row)
             {
-                // Can't use col if col > row, so only consider partitions without col
                 dp[row][col] = dp[row][col - 1];
             }
             else
             {
-                // dp[row][col - 1]: partitions that don't use col
-                // dp[row - col][col]: partitions that use col at least once
                 dp[row][col] = dp[row][col - 1] + dp[row - col][col];
             }
         }
