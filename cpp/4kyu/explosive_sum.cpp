@@ -18,9 +18,9 @@ ull exp_sum(const unsigned int n)
         dp[0][col] = 1;
     }
 
-    for (ull row = 1; row < n; ++row)
+    for (ull row = 1; row <= n; ++row)
     {
-        for (ull col = 1; col < n; ++col)
+        for (ull col = 1; col <= n; ++col)
         {
             if (col > row)
             {
