@@ -26,7 +26,8 @@ add_library(kata STATIC
 #    cpp/4kyu/adding_big_numbers.cpp
 #    cpp/4kyu/path_finder2.cpp
 #    cpp/4kyu/shortest_knight_path.cpp
-    cpp/4kyu/explosive_sum.cpp
+    #cpp/4kyu/explosive_sum.cpp
+    cpp/3kyu/path_finder3.cpp
 )
 
 # Test executable containing all test files
@@ -39,7 +40,8 @@ add_executable(YourTestRunner
 #    cpp/4kyu/adding_big_numbers.cpp
 #    cpp/4kyu/path_finder2.cpp
 #    cpp/4kyu/shortest_knight_path.cpp
-    cpp/4kyu/explosive_sum.cpp
+#    cpp/4kyu/explosive_sum.cpp
+    cpp/3kyu/path_finder3.cpp
 )
 
 # Link Catch2 main and your library
