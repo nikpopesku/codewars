@@ -6,6 +6,15 @@ using namespace std;
 int path_finder(const string& maze)
 {
     const int N = static_cast<int>(maze.size());
+
+    stringstream ss(maze);
+    string line;
+    vector<string> lines;
+    while (getline(ss, line, '\n'))
+    {
+        lines.push_back(line);
+    }
+
     vector dp(N, vector(N, INT_MAX));
     dp[0][0] = 0;
 
@@ -29,7 +38,7 @@ int path_finder(const string& maze)
                 pair nd = {row + fst, col + snd};
                 if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N)
                 {
-                    st.emplace(nd.first, nd.second, count + 1);
+                    st.emplace(nd.first, nd.second, count + abs(lines[nd.first][nd.second] - dp[row][col]));
                 }
             }
         }
