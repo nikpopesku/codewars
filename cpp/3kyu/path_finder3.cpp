@@ -1,11 +1,13 @@
 #include "../cw_compat.hpp"
+#include <climits>
 
 using namespace std;
 
 int path_finder(const string& maze)
 {
     const int N = static_cast<int>(maze.size());
-    vector dp(N, vector(N, 0));
+    vector dp(N, vector(N, INT_MAX));
+    dp[0][0] = 0;
 
 
     const vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
