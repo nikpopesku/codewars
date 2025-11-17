@@ -101,6 +101,7 @@ Describe(example_tests)
 
         string s7 =
 
+
             "000000\n"
             "000000\n"
             "000000\n"
