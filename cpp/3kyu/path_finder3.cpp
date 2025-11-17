@@ -4,8 +4,9 @@ using namespace std;
 
 int path_finder(string maze)
 {
-    // your code here... enjoy!
-    return -1;
+    vector dp(maze.size(), vector(maze.size(), 0));
+
+    vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
 }
 
 Describe(example_tests)
