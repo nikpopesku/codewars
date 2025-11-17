@@ -21,16 +21,19 @@ int path_finder(const string& maze)
         if (dp[row][col] > count)
         {
             dp[row][col] = count;
-        }
 
-        for (const auto& [fst, snd] : directions)
-        {
-            pair nd = {row + fst, col + snd};
-            if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N && dp[nd.first])
-
-
+            for (const auto& [fst, snd] : directions)
+            {
+                pair nd = {row + fst, col + snd};
+                if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N)
+                {
+                    st.emplace(nd.first, nd.second, count + 1);
+                }
+            }
         }
     }
+
+    return dp[N - 1][N - 1];
 }
 
 Describe(example_tests)
