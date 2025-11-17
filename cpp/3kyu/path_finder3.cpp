@@ -4,19 +4,31 @@ using namespace std;
 
 int path_finder(const string& maze)
 {
-    vector dp(maze.size(), vector(maze.size(), 0));
+    const int N = static_cast<int>(maze.size());
+    vector dp(N, vector(N, 0));
+
 
     const vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
 
-    stack<pair<int, int>> st;
-    st.emplace(0, 0);
+    stack<tuple<int, int, int>> st;
+    st.emplace(0, 0, 0);
 
     while (!st.empty())
     {
-        auto elem = st.top();
+        auto [row, col, count] = st.top();
         st.pop();
-        for (auto& d : directions)
+
+        if (dp[row][col] > count)
         {
+            dp[row][col] = count;
+        }
+
+        for (const auto& [fst, snd] : directions)
+        {
+            pair nd = {row + fst, col + snd};
+            if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N && dp[nd.first])
+
+
         }
     }
 }
