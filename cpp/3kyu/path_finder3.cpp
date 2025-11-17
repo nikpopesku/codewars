@@ -2,11 +2,23 @@
 
 using namespace std;
 
-int path_finder(string maze)
+int path_finder(const string& maze)
 {
     vector dp(maze.size(), vector(maze.size(), 0));
 
-    vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+    const vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
+
+    stack<pair<int, int>> st;
+    st.emplace(0, 0);
+
+    while (!st.empty())
+    {
+        auto elem = st.top();
+        st.pop();
+        for (auto& d : directions)
+        {
+        }
+    }
 }
 
 Describe(example_tests)
