@@ -1,4 +1,5 @@
 #include "../cw_compat.hpp"
+#include <queue>
 #include <climits>
 
 using namespace std;
@@ -16,28 +17,39 @@ int path_finder(const string& maze)
     const int N = static_cast<int>(lines.size());
 
     vector dp(N, vector(N, INT_MAX));
-
+    dp[0][0] = 0;
 
     const vector<pair<int, int>> directions = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}};
 
-    stack<tuple<int, int, int>> st;
-    st.emplace(0, 0, 0);
+    // Priority queue for Dijkstra's algorithm: {cost, row, col}
+    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<>> pq;
+    pq.emplace(0, 0, 0);
 
-    while (!st.empty())
+    while (!pq.empty())
     {
-        auto [row, col, count] = st.top();
-        st.pop();
+        auto [cost, row, col] = pq.top();
+        pq.pop();
 
-        if (dp[row][col] > count)
+        if (cost > dp[row][col]) {
+            continue; // Skip if we already found a better path
+        }
+
+        if (row == N - 1 && col == N - 1) {
+            return cost; // Early exit when reaching target
+        }
+
+        for (const auto& [dr, dc] : directions)
         {
-            dp[row][col] = count;
+            int new_row = row + dr;
+            int new_col = col + dc;
 
-            for (const auto& [fst, snd] : directions)
+            if (new_row >= 0 && new_row < N && new_col >= 0 && new_col < N)
             {
-                pair nd = {row + fst, col + snd};
-                if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N)
-                {
-                    st.emplace(nd.first, nd.second, count + abs((lines[nd.first][nd.second] - '0') - (lines[row][col] - '0')));
+                int new_cost = cost + abs((lines[new_row][new_col] - '0') - (lines[row][col] - '0'));
+
+                if (new_cost < dp[new_row][new_col]) {
+                    dp[new_row][new_col] = new_cost;
+                    pq.emplace(new_cost, new_row, new_col);
                 }
             }
         }
