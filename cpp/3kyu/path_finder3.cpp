@@ -37,7 +37,7 @@ int path_finder(const string& maze)
                 pair nd = {row + fst, col + snd};
                 if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N)
                 {
-                    st.emplace(nd.first, nd.second, count + abs((lines[nd.first][nd.second] - '0') - dp[row][col]));
+                    st.emplace(nd.first, nd.second, count + abs((lines[nd.first][nd.second] - '0') - (lines[row][col] - '0')));
                 }
             }
         }
@@ -50,19 +50,19 @@ Describe(example_tests)
 {
     It(should_work_for_basic_tests)
     {
-        // string s1 =
-        //
-        //     "000\n"
-        //     "000\n"
-        //     "000";
-        // Assert::That(path_finder(s1), Equals(0));
-        //
-        // string s2 =
-        //
-        //     "010\n"
-        //     "010\n"
-        //     "010";
-        // Assert::That(path_finder(s2), Equals(2));
+        string s1 =
+
+            "000\n"
+            "000\n"
+            "000";
+        Assert::That(path_finder(s1), Equals(0));
+
+        string s2 =
+
+            "010\n"
+            "010\n"
+            "010";
+        Assert::That(path_finder(s2), Equals(2));
 
         string s3 =
 
@@ -71,42 +71,42 @@ Describe(example_tests)
             "010";
         Assert::That(path_finder(s3), Equals(4));
 
-        // string s4 =
-        //
-        //     "0707\n"
-        //     "7070\n"
-        //     "0707\n"
-        //     "7070";
-        // Assert::That(path_finder(s4), Equals(42));
-        //
-        // string s5 =
-        //
-        //     "700000\n"
-        //     "077770\n"
-        //     "077770\n"
-        //     "077770\n"
-        //     "077770\n"
-        //     "000007";
-        // Assert::That(path_finder(s5), Equals(14));
-        //
-        // string s6 =
-        //
-        //     "777000\n"
-        //     "007000\n"
-        //     "007000\n"
-        //     "007000\n"
-        //     "007000\n"
-        //     "007777";
-        // Assert::That(path_finder(s6), Equals(0));
-        //
-        // string s7 =
-        //
-        //     "000000\n"
-        //     "000000\n"
-        //     "000000\n"
-        //     "000010\n"
-        //     "000109\n"
-        //     "001010";
-        // Assert::That(path_finder(s7), Equals(4));
+        string s4 =
+
+            "0707\n"
+            "7070\n"
+            "0707\n"
+            "7070";
+        Assert::That(path_finder(s4), Equals(42));
+
+        string s5 =
+
+            "700000\n"
+            "077770\n"
+            "077770\n"
+            "077770\n"
+            "077770\n"
+            "000007";
+        Assert::That(path_finder(s5), Equals(14));
+
+        string s6 =
+
+            "777000\n"
+            "007000\n"
+            "007000\n"
+            "007000\n"
+            "007000\n"
+            "007777";
+        Assert::That(path_finder(s6), Equals(0));
+
+        string s7 =
+
+            "000000\n"
+            "000000\n"
+            "000000\n"
+            "000010\n"
+            "000109\n"
+            "001010";
+        Assert::That(path_finder(s7), Equals(4));
     }
 };
