@@ -31,7 +31,7 @@ struct Image {
         for (unsigned row = 0; row < height; ++row) {
             for (unsigned col = 0; col < width; ++col) {
                 if (pixels[row * width + col] == colour) {
-                    response.insert(row * width + col);
+                    s.insert(row * width + col);
                 }
             }
         }
@@ -39,9 +39,7 @@ struct Image {
         int step = 1;
 
         while (true) {
-            auto new_s = Image::filter(s);
-
-            if (!new_s.empty()) {
+            if (auto new_s = Image::filter(s); !new_s.empty()) {
                 s = new_s;
                 ++step;
             } else {
