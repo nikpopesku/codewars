@@ -24,10 +24,13 @@ struct Image {
     unordered_set<unsigned> filter(unordered_set<unsigned> &s) const {
         vector<unsigned> for_removal;
         const unsigned mx = width * height;
-        const vector directions = {-static_cast<int>(height), static_cast<int>(height), -static_cast<int>(width), static_cast<int>(width)};
+        const vector directions = {
+            -static_cast<int>(height), static_cast<int>(height), -static_cast<int>(width), static_cast<int>(width)
+        };
         for (auto &elem: s) {
-            for (auto d: directions) {
-                if (const int val = static_cast<int>(elem) + d; val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
+            for (const auto d: directions) {
+                if (const int val = static_cast<int>(elem) + d; val >= 0 && val < static_cast<int>(mx) && s.count(
+                                                                    static_cast<unsigned>(val)) == 0) {
                     for_removal.push_back(elem);
                     break; // Break if any neighbor is not in the set
                 }
