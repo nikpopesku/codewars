@@ -10,8 +10,14 @@ struct Image {
 
     unordered_set<unsigned> filter(unordered_set<unsigned> &s) {
         vector<unsigned> for_removal;
-        for (auto& elem: s) {
-
+        const unsigned mx = width * height;
+        const vector<int> directions = {-1 * height, height, -1 * width, width};
+        for (auto &elem: s) {
+            for (auto &d: directions) {
+                if (const int val = elem + d; val >= 0 && val < mx && s.count(val) == 0) {
+                    for_removal.push_back(elem);
+                }
+            }
         }
     }
 
@@ -28,19 +34,19 @@ struct Image {
 
         int step = 1;
 
-        while (!response.empty()) {
+        while (true) {
             auto new_response = Image::filter(response);
 
-            if (new_response.empty()) {
+            if (!new_response.empty()) {
                 response = new_response;
                 ++step;
+            } else {
+                break;
             }
         }
 
 
-
-
-        return {};
+        return response;
     }
 };
 
