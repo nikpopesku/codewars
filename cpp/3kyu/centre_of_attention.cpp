@@ -10,13 +10,11 @@ struct Image {
     unsigned *pixels;
     unsigned width, height;
 
-    // Constructor
-    Image(std::initializer_list<unsigned> pixel_data, unsigned w, unsigned h) : width(w), height(h) {
+    Image(const std::initializer_list<unsigned> pixel_data, const unsigned w, const unsigned h) : width(w), height(h) {
         pixels = new unsigned[pixel_data.size()];
         std::copy(pixel_data.begin(), pixel_data.end(), pixels);
     }
 
-    // Destructor
     ~Image() {
         delete[] pixels;
     }
@@ -44,7 +42,7 @@ struct Image {
         return s; // Return the filtered set
     }
 
-    vector<unsigned> central_pixels(const unsigned colour) const {
+    [[nodiscard]] vector<unsigned> central_pixels(const unsigned colour) const {
         unordered_set<unsigned> s;
 
         for (unsigned row = 0; row < height; ++row) {
@@ -76,7 +74,7 @@ struct Image {
 
 Describe(Centre_of_attention) {
     It(Example_In_The_Picture) {
-        Image image({
+        const Image image({
                         1, 1, 4, 4, 4, 4, 2, 2, 2, 2,
                         1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                         1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
