@@ -25,7 +25,7 @@ struct Image {
         }
     }
 
-    vector<unsigned> central_pixels(unsigned colour) const {
+    vector<unsigned> central_pixels(unsigned colour) {
         unordered_set<unsigned> s;
 
         for (unsigned row = 0; row < height; ++row) {
@@ -36,12 +36,9 @@ struct Image {
             }
         }
 
-        int step = 1;
-
         while (true) {
-            if (auto new_s = Image::filter(s); !new_s.empty()) {
+            if (auto new_s = filter(s); !new_s.empty()) {
                 s = new_s;
-                ++step;
             } else {
                 break;
             }
