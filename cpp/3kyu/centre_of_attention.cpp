@@ -1,4 +1,7 @@
 #include "../cw_compat.hpp"
+#include <unordered_set>
+#include <vector>
+#include <algorithm>
 
 
 using namespace std;
@@ -7,9 +10,9 @@ struct Image {
     unsigned *pixels;
     unsigned width, height;
 
-    Image(const std::initializer_list<unsigned> pixel_data, const unsigned w, const unsigned h) : width(w), height(h) {
+    Image(const initializer_list<unsigned> pixel_data, const unsigned w, const unsigned h) : width(w), height(h) {
         pixels = new unsigned[pixel_data.size()];
-        std::copy(pixel_data.begin(), pixel_data.end(), pixels);
+        copy(pixel_data.begin(), pixel_data.end(), pixels);
     }
 
     ~Image() {
