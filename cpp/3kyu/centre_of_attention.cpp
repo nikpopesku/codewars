@@ -22,61 +22,32 @@ struct Image {
     [[nodiscard]] vector<unsigned> central_pixels(unsigned colour) const;
 };
 
-vector<unsigned> Image::central_pixels(unsigned colour) const
+std::vector<unsigned> Image::central_pixels(unsigned colour) const
 {
-    unordered_set<unsigned> s;
-
-    // Collect all pixels of the target colour
-    for (unsigned row = 0; row < height; ++row) {
-        for (unsigned col = 0; col < width; ++col) {
-            if (pixels[row * width + col] == colour) {
-                s.insert(row * width + col);
-            }
+    std::vector<unsigned> res(width*height, 0);
+    for(unsigned it{0}; it != width*height; ++it){
+        if(pixels[it] == colour){
+            res[it] = 1;
+            if(it >= width && it%width != 0 && it <= width*(height - 1) && it%width != width - 1)
+                res[it] +=  std::min(res[it - 1], res[it - width]);
         }
     }
-
-    const unsigned mx = width * height;
-    const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
-
-    while (true) {
-        // Store results in a new set to avoid iteration/modification conflicts
-        unordered_set<unsigned> next_set;
-        next_set.reserve(s.size()); // Pre-allocate to improve performance
-
-        for (auto &elem: s) {
-            bool keep_elem = true;
-
-            for (const auto d: directions) {
-                const int val = static_cast<int>(elem) + d;
-                if (val < 0 || val >= static_cast<int>(mx)) {
-                    keep_elem = false;
-                    break; // Edge pixel, should be removed
-                }
-                if (s.count(static_cast<unsigned>(val)) == 0) {
-                    keep_elem = false;
-                    break; // Missing neighbor, should be removed
-                }
-            }
-
-            if (keep_elem) {
-                next_set.insert(elem);
-            }
+    unsigned maxelem{0};
+    for(unsigned it{width*height - 1}; it > 0; --it){
+        if(pixels[it] == colour){
+            res[it] = 1;
+            if(it >= width && it%width != 0 && it <= width*(height - 1) && it%width != width - 1)
+                res[it] += std::min({res[it - 1], res[it - width], res[it + 1], res[it + width]});
+            maxelem = std::max(res[it], maxelem);
         }
-
-        if (next_set.size() == s.size()) {
-            break; // No change, we've found the central pixels
-        }
-
-        if (next_set.empty()) {
-            break; // No central pixels found
-        }
-
-        s.swap(next_set); // Efficient swap instead of assignment
     }
-
-    return {s.begin(), s.end()};
+    std::vector<unsigned> out;
+    if(maxelem != 0)
+        for(unsigned it{0}; it !=  width*height; ++it)
+            if(res[it] == maxelem)
+                out.push_back(it);
+    return out;
 }
-
 /* ---------------------------------------------------------------------------------- */
 /*                               TESTS                                                */
 /* ---------------------------------------------------------------------------------- */
