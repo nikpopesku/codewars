@@ -8,7 +8,11 @@ struct Image {
     unsigned *pixels;
     unsigned width, height;
 
-    void filter(unordered_set<unsigned> &s) {
+    unordered_set<unsigned> filter(unordered_set<unsigned> &s) {
+        vector<unsigned> for_removal;
+        for (auto& elem: s) {
+
+        }
     }
 
     vector<unsigned> central_pixels(unsigned colour) const {
@@ -22,7 +26,18 @@ struct Image {
             }
         }
 
-        Image::filter(response);
+        int step = 1;
+
+        while (!response.empty()) {
+            auto new_response = Image::filter(response);
+
+            if (new_response.empty()) {
+                response = new_response;
+                ++step;
+            }
+        }
+
+
 
 
         return {};
