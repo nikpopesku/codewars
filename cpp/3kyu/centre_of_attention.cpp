@@ -1,3 +1,5 @@
+#include <unordered_set>
+
 #include "../cw_compat.hpp"
 
 using namespace std;
@@ -6,9 +8,25 @@ struct Image {
     unsigned *pixels;
     unsigned width, height;
 
-    vector<unsigned> central_pixels(unsigned colour) const;
+    void filter(unordered_set<unsigned> &s) {
+    }
+
+    vector<unsigned> central_pixels(unsigned colour) const {
+        unordered_set<unsigned> response;
+
         for (unsigned row = 0; row < height; ++row) {
+            for (unsigned col = 0; col < width; ++col) {
+                if (pixels[row * width + col] == colour) {
+                    response.insert(row * width + col);
+                }
+            }
         }
+
+        Image::filter(response);
+
+
+        return {};
+    }
 };
 
 
