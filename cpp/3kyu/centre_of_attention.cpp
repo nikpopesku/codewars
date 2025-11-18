@@ -19,10 +19,14 @@ struct Image {
                 }
             }
         }
+
+        for (auto &elem: for_removal) {
+            s.erase(elem);
+        }
     }
 
     vector<unsigned> central_pixels(unsigned colour) const {
-        unordered_set<unsigned> response;
+        unordered_set<unsigned> s;
 
         for (unsigned row = 0; row < height; ++row) {
             for (unsigned col = 0; col < width; ++col) {
@@ -35,16 +39,17 @@ struct Image {
         int step = 1;
 
         while (true) {
-            auto new_response = Image::filter(response);
+            auto new_s = Image::filter(s);
 
-            if (!new_response.empty()) {
-                response = new_response;
+            if (!new_s.empty()) {
+                s = new_s;
                 ++step;
             } else {
                 break;
             }
         }
 
+        vector<unsigned> response{s.begin(), s.end()};
 
         return response;
     }
