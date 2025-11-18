@@ -19,33 +19,8 @@ struct Image {
         delete[] pixels;
     }
 
-    [[nodiscard]] unordered_set<unsigned> filter(unordered_set<unsigned> s) const;
-
     [[nodiscard]] vector<unsigned> central_pixels(unsigned colour) const;
 };
-
-unordered_set<unsigned> Image::filter(unordered_set<unsigned> s) const {
-    vector<unsigned> for_removal;
-    const unsigned mx = width * height;
-    const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
-    for (auto &elem: s) {
-        for (const auto d: directions) {
-            const int val = static_cast<int>(elem) + d;
-            if (val < 0 || val >= static_cast<int>(mx)) {
-                for_removal.push_back(elem);
-            }
-            if (val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
-                for_removal.push_back(elem);
-            }
-        }
-    }
-
-    for (auto &elem: for_removal) {
-        s.erase(elem);
-    }
-
-    return s; // Return the filtered set
-}
 
 vector<unsigned> Image::central_pixels(unsigned colour) const
 {
@@ -60,8 +35,31 @@ vector<unsigned> Image::central_pixels(unsigned colour) const
     }
 
     while (true) {
-        if (auto new_s = Image::filter(s); !new_s.empty()) {
-            s = new_s;
+        // Filter logic moved from separate filter() method
+        vector<unsigned> for_removal;
+        const unsigned mx = width * height;
+        const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
+
+        // Create a copy to work with, matching original filter behavior
+        unordered_set<unsigned> s_copy = s;
+        for (auto &elem: s_copy) {
+            for (const auto d: directions) {
+                const int val = static_cast<int>(elem) + d;
+                if (val < 0 || val >= static_cast<int>(mx)) {
+                    for_removal.push_back(elem);
+                }
+                if (val >= 0 && val < static_cast<int>(mx) && s_copy.count(static_cast<unsigned>(val)) == 0) {
+                    for_removal.push_back(elem);
+                }
+            }
+        }
+
+        for (auto &elem: for_removal) {
+            s_copy.erase(elem);
+        }
+
+        if (!s_copy.empty()) {
+            s = s_copy;
         } else {
             break;
         }
