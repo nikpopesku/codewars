@@ -7,8 +7,8 @@ struct Image {
     unsigned width, height;
 
     vector<unsigned> central_pixels(unsigned colour) const;
-
-    // other functions ...
+        for (unsigned row = 0; row < height; ++row) {
+        }
 };
 
 
