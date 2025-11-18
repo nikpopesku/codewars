@@ -1,4 +1,6 @@
 #include <unordered_set>
+#include <vector>
+#include <algorithm>
 
 #include "../cw_compat.hpp"
 
@@ -8,14 +10,26 @@ struct Image {
     unsigned *pixels;
     unsigned width, height;
 
-    unordered_set<unsigned> filter(unordered_set<unsigned> &s) {
+    // Constructor
+    Image(std::initializer_list<unsigned> pixel_data, unsigned w, unsigned h) : width(w), height(h) {
+        pixels = new unsigned[pixel_data.size()];
+        std::copy(pixel_data.begin(), pixel_data.end(), pixels);
+    }
+
+    // Destructor
+    ~Image() {
+        delete[] pixels;
+    }
+
+    unordered_set<unsigned> filter(unordered_set<unsigned> &s) const {
         vector<unsigned> for_removal;
         const unsigned mx = width * height;
-        const vector<int> directions = {-1 * height, height, -1 * width, width};
+        const vector directions = {-static_cast<int>(height), static_cast<int>(height), -static_cast<int>(width), static_cast<int>(width)};
         for (auto &elem: s) {
-            for (auto &d: directions) {
-                if (const int val = elem + d; val >= 0 && val < mx && s.count(val) == 0) {
+            for (auto d: directions) {
+                if (const int val = static_cast<int>(elem) + d; val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
                     for_removal.push_back(elem);
+                    break; // Break if any neighbor is not in the set
                 }
             }
         }
@@ -23,9 +37,11 @@ struct Image {
         for (auto &elem: for_removal) {
             s.erase(elem);
         }
+
+        return s; // Return the filtered set
     }
 
-    vector<unsigned> central_pixels(unsigned colour) {
+    vector<unsigned> central_pixels(const unsigned colour) const {
         unordered_set<unsigned> s;
 
         for (unsigned row = 0; row < height; ++row) {
@@ -50,9 +66,6 @@ struct Image {
     }
 };
 
-
-vector<unsigned> Image::central_pixels(unsigned colour) const {
-}
 
 /* ---------------------------------------------------------------------------------- */
 /*                               TESTS                                                */

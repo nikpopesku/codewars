@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <unordered_set>
 #include <catch2/catch_all.hpp>
 
 // Map Codewars BDD-style to Catch2 equivalents
@@ -30,9 +31,27 @@ namespace cw_compat {
 
 // Provide Assert::That(...) API similar to Codewars
 namespace Assert {
+    // Primary template for regular comparisons
     template <typename Actual, typename Expected>
-    inline void That(const Actual& actual, const Expected& expected, const std::string& msg = "") {
+    auto That(const Actual& actual, const Expected& expected, const std::string& msg = "")
+        -> decltype(actual == expected, void()) {
         if (!msg.empty()) INFO(msg);
         REQUIRE(actual == expected);
     }
+
+    // Overload for predicate functions (lambdas, function pointers, etc.)
+    template <typename Actual, typename Predicate>
+    auto That(const Actual& actual, Predicate predicate, const std::string& msg = "")
+        -> decltype(predicate(actual), void()) {
+        if (!msg.empty()) INFO(msg);
+        REQUIRE(predicate(actual));
+    }
+}
+
+// Helper macros for unordered matching
+#define Fulfills(condition) condition
+#define Unordered_Match(expected) [&expected](const auto& actual) { \
+    std::unordered_set<typename std::decay_t<decltype(actual)>::value_type> actual_set(actual.begin(), actual.end()); \
+    std::unordered_set<typename std::decay_t<decltype(expected)>::value_type> expected_set(expected.begin(), expected.end()); \
+    return actual_set == expected_set; \
 }
