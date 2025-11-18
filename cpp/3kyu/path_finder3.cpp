@@ -16,6 +16,7 @@ int path_finder(const string &maze) {
     const int N = static_cast<int>(lines.size());
 
     vector dp(N, vector(N, INT_MAX));
+    vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
 
     priority_queue<tuple<int, int, int>, vector<tuple<int, int, int> >, greater<> > pq;
     pq.emplace(0, 0, 0);
@@ -26,6 +27,23 @@ int path_finder(const string &maze) {
 
         if (cost > dp[row][col]) {
             continue;
+        }
+
+        if (row == N - 1 && col == N - 1) {
+            return cost;
+        }
+
+        for (auto &[fst, snd]: directions) {
+            pair nd = {row + fst, col + snd};
+
+            if (nd.first >= 0 && nd.first < N && nd.second >= 0 && nd.second < N) {
+                int new_cost = cost + abs((lines[nd.first][nd.second] - '0') - (lines[row][col] - '0'));
+
+                if (new_cost < dp[nd.first][nd.second]) {
+                    pq.emplace(new_cost, nd.first, nd.second);
+                    dp[nd.first][nd.second] = new_cost;
+                }
+            }
         }
     }
 }
