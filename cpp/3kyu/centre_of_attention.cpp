@@ -26,6 +26,9 @@ struct Image {
         for (auto &elem: s) {
             for (const auto d: directions) {
                 const int val = static_cast<int>(elem) + d;
+                if (val < 0 || val >= static_cast<int>(mx)) {
+                    for_removal.push_back(elem);
+                }
                 if (val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
                     for_removal.push_back(elem);
                 }
@@ -84,25 +87,25 @@ Describe(Centre_of_attention) {
         vector<unsigned> red_ctr = {32};
         Assert::That(image.central_pixels(1), Fulfills(Unordered_Match(red_ctr)));
 
-        // // Multiple blue pixels have the maximum depth of 2:
-        // vector<unsigned> blue_ctr = {16, 17, 18, 26, 27, 28, 38};
-        // Assert::That(image.central_pixels(2), Fulfills(Unordered_Match(blue_ctr)));
-        //
-        // // All the green pixels have depth 1, so they are all "central":
-        // vector<unsigned> green_ctr = {35, 45, 46, 47, 56, 57, 58, 59};
-        // Assert::That(image.central_pixels(3), Fulfills(Unordered_Match(green_ctr)));
-        //
-        // // Similarly, all the purple pixels have depth 1:
-        // vector<unsigned> purple_ctr = {2, 3, 4, 5};
-        // Assert::That(image.central_pixels(4), Fulfills(Unordered_Match(purple_ctr)));
-        //
-        // // There are no pixels with colour 5:
-        // vector<unsigned> non_existent_ctr = {};
-        // Assert::That(image.central_pixels(5), Fulfills(Unordered_Match(non_existent_ctr)));
-        //
-        // // Changing one pixel can make a big difference to the result:
-        // image.pixels[32] = 3;
-        // vector<unsigned> new_ctr = {11, 21, 41, 43};
-        // Assert::That(image.central_pixels(1), Fulfills(Unordered_Match(new_ctr)));
+        // Multiple blue pixels have the maximum depth of 2:
+        vector<unsigned> blue_ctr = {16, 17, 18, 26, 27, 28, 38};
+        Assert::That(image.central_pixels(2), Fulfills(Unordered_Match(blue_ctr)));
+
+        // All the green pixels have depth 1, so they are all "central":
+        vector<unsigned> green_ctr = {35, 45, 46, 47, 56, 57, 58, 59};
+        Assert::That(image.central_pixels(3), Fulfills(Unordered_Match(green_ctr)));
+
+        // Similarly, all the purple pixels have depth 1:
+        vector<unsigned> purple_ctr = {2, 3, 4, 5};
+        Assert::That(image.central_pixels(4), Fulfills(Unordered_Match(purple_ctr)));
+
+        // There are no pixels with colour 5:
+        vector<unsigned> non_existent_ctr = {};
+        Assert::That(image.central_pixels(5), Fulfills(Unordered_Match(non_existent_ctr)));
+
+        // Changing one pixel can make a big difference to the result:
+        image.pixels[32] = 3;
+        vector<unsigned> new_ctr = {11, 21, 41, 43};
+        Assert::That(image.central_pixels(1), Fulfills(Unordered_Match(new_ctr)));
     }
 };
