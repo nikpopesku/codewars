@@ -19,54 +19,58 @@ struct Image {
         delete[] pixels;
     }
 
-    unordered_set<unsigned> filter(unordered_set<unsigned> s) const {
-        vector<unsigned> for_removal;
-        const unsigned mx = width * height;
-        const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
-        for (auto &elem: s) {
-            for (const auto d: directions) {
-                const int val = static_cast<int>(elem) + d;
-                if (val < 0 || val >= static_cast<int>(mx)) {
-                    for_removal.push_back(elem);
-                }
-                if (val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
-                    for_removal.push_back(elem);
-                }
-            }
-        }
+    [[nodiscard]] unordered_set<unsigned> filter(unordered_set<unsigned> s) const;
 
-        for (auto &elem: for_removal) {
-            s.erase(elem);
-        }
-
-        return s; // Return the filtered set
-    }
-
-    [[nodiscard]] vector<unsigned> central_pixels(const unsigned colour) const {
-        unordered_set<unsigned> s;
-
-        for (unsigned row = 0; row < height; ++row) {
-            for (unsigned col = 0; col < width; ++col) {
-                if (pixels[row * width + col] == colour) {
-                    s.insert(row * width + col);
-                }
-            }
-        }
-
-        while (true) {
-            if (auto new_s = filter(s); !new_s.empty()) {
-                s = new_s;
-            } else {
-                break;
-            }
-        }
-
-        vector<unsigned> response{s.begin(), s.end()};
-
-        return response;
-    }
+    [[nodiscard]] vector<unsigned> central_pixels(unsigned colour) const;
 };
 
+unordered_set<unsigned> Image::filter(unordered_set<unsigned> s) const {
+    vector<unsigned> for_removal;
+    const unsigned mx = width * height;
+    const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
+    for (auto &elem: s) {
+        for (const auto d: directions) {
+            const int val = static_cast<int>(elem) + d;
+            if (val < 0 || val >= static_cast<int>(mx)) {
+                for_removal.push_back(elem);
+            }
+            if (val >= 0 && val < static_cast<int>(mx) && s.count(static_cast<unsigned>(val)) == 0) {
+                for_removal.push_back(elem);
+            }
+        }
+    }
+
+    for (auto &elem: for_removal) {
+        s.erase(elem);
+    }
+
+    return s; // Return the filtered set
+}
+
+vector<unsigned> Image::central_pixels(unsigned colour) const
+{
+    unordered_set<unsigned> s;
+
+    for (unsigned row = 0; row < height; ++row) {
+        for (unsigned col = 0; col < width; ++col) {
+            if (pixels[row * width + col] == colour) {
+                s.insert(row * width + col);
+            }
+        }
+    }
+
+    while (true) {
+        if (auto new_s = Image::filter(s); !new_s.empty()) {
+            s = new_s;
+        } else {
+            break;
+        }
+    }
+
+    vector<unsigned> response{s.begin(), s.end()};
+
+    return response;
+}
 
 /* ---------------------------------------------------------------------------------- */
 /*                               TESTS                                                */
