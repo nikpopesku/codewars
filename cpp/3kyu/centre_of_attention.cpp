@@ -26,6 +26,7 @@ vector<unsigned> Image::central_pixels(unsigned colour) const
 {
     unordered_set<unsigned> s;
 
+    // Collect all pixels of the target colour
     for (unsigned row = 0; row < height; ++row) {
         for (unsigned col = 0; col < width; ++col) {
             if (pixels[row * width + col] == colour) {
@@ -34,40 +35,46 @@ vector<unsigned> Image::central_pixels(unsigned colour) const
         }
     }
 
-    while (true) {
-        // Filter logic moved from separate filter() method
-        vector<unsigned> for_removal;
-        const unsigned mx = width * height;
-        const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
+    const unsigned mx = width * height;
+    const vector directions = {-static_cast<int>(width), static_cast<int>(width), -1, 1};
 
-        // Create a copy to work with, matching original filter behavior
-        unordered_set<unsigned> s_copy = s;
-        for (auto &elem: s_copy) {
+    while (true) {
+        // Store results in a new set to avoid iteration/modification conflicts
+        unordered_set<unsigned> next_set;
+        next_set.reserve(s.size()); // Pre-allocate to improve performance
+
+        for (auto &elem: s) {
+            bool keep_elem = true;
+
             for (const auto d: directions) {
                 const int val = static_cast<int>(elem) + d;
                 if (val < 0 || val >= static_cast<int>(mx)) {
-                    for_removal.push_back(elem);
+                    keep_elem = false;
+                    break; // Edge pixel, should be removed
                 }
-                if (val >= 0 && val < static_cast<int>(mx) && s_copy.count(static_cast<unsigned>(val)) == 0) {
-                    for_removal.push_back(elem);
+                if (s.count(static_cast<unsigned>(val)) == 0) {
+                    keep_elem = false;
+                    break; // Missing neighbor, should be removed
                 }
+            }
+
+            if (keep_elem) {
+                next_set.insert(elem);
             }
         }
 
-        for (auto &elem: for_removal) {
-            s_copy.erase(elem);
+        if (next_set.size() == s.size()) {
+            break; // No change, we've found the central pixels
         }
 
-        if (!s_copy.empty()) {
-            s = s_copy;
-        } else {
-            break;
+        if (next_set.empty()) {
+            break; // No central pixels found
         }
+
+        s.swap(next_set); // Efficient swap instead of assignment
     }
 
-    vector<unsigned> response{s.begin(), s.end()};
-
-    return response;
+    return {s.begin(), s.end()};
 }
 
 /* ---------------------------------------------------------------------------------- */
