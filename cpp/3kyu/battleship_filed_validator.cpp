@@ -9,10 +9,41 @@ struct PairHash {
     }
 };
 
+bool validate(set<pair<int, int>>& ship) {
+    string directions, new_directions;
+    pair<int, int> previous;
+
+    for (auto & s: ship) {
+        if (previous) {
+            if (s.first == previous.first) {
+                new_directions = 'horizontal';
+            }
+
+            if (s.second == previous.second) {
+                new_directions = 'vertical';
+            }
+
+            if (new_directions.size() == 0) {
+                return false;
+            }
+
+            if (directions.size() != 0 && new_directions != directions) {
+                return false;
+            }
+
+            directions = new_directions;
+        }
+        previous = s;
+    }
+
+    return true;
+
+}
+
 int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
               const vector<vector<int> > &field) {
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    unordered_set<pair<int, int>, PairHash> ship;
+    set<pair<int, int>> ship;
 
     while (!st.empty()) {
         auto [row, col] = st.top();
