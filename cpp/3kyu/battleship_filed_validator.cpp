@@ -46,7 +46,7 @@ bool validate(const set<pair<int, int> > &ship) {
 
 int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
               const vector<vector<int> > &field) {
-    vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, -1}, {-1, 1}};
     set<pair<int, int> > ship;
 
     while (!st.empty()) {
