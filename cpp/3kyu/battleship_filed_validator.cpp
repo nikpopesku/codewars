@@ -9,11 +9,11 @@ struct PairHash {
     }
 };
 
-bool validate(set<pair<int, int>>& ship) {
+bool validate(set<pair<int, int> > &ship) {
     string directions, new_directions;
     pair<int, int> previous;
 
-    for (auto & s: ship) {
+    for (auto &s: ship) {
         if (previous) {
             if (s.first == previous.first) {
                 new_directions = 'horizontal';
@@ -37,13 +37,12 @@ bool validate(set<pair<int, int>>& ship) {
     }
 
     return true;
-
 }
 
 int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
               const vector<vector<int> > &field) {
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    set<pair<int, int>> ship;
+    set<pair<int, int> > ship;
 
     while (!st.empty()) {
         auto [row, col] = st.top();
