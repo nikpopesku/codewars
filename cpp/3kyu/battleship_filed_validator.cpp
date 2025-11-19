@@ -9,7 +9,7 @@ struct PairHash {
     }
 };
 
-bool validate(set<pair<int, int> > &ship) {
+bool validate(const set<pair<int, int> > &ship) {
     string directions, new_directions;
     pair<int, int> previous;
     int counter = 0;
@@ -39,7 +39,7 @@ bool validate(set<pair<int, int> > &ship) {
         ++counter;
     }
 
-    return true;
+    return counter > 0 && counter <= 4;
 }
 
 int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
@@ -64,6 +64,8 @@ int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash
             }
         }
     }
+
+    return validate(ship) ? ship.size() : -1;
 }
 
 bool validate_battlefield(const vector<vector<int> > &field) {
@@ -79,11 +81,23 @@ bool validate_battlefield(const vector<vector<int> > &field) {
 
                 if (field[row][col] == 1) {
                     st.emplace(row, col);
-                    find_ship(st, visited, field);
+                    int ship_size = find_ship(st, visited, field);
+                    if (ship_size == -1) {
+                        return false;
+                    }
+
+                    ++ship_mp[ship_size];
                 }
             }
         }
     }
+
+    if (ship_mp[1] != 4) return false;
+    if (ship_mp[2] != 3) return false;
+    if (ship_mp[3] != 2) return false;
+    if (ship_mp[4] != 1) return false;
+
+    return true;
 }
 
 
