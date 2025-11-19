@@ -9,20 +9,25 @@ struct PairHash {
     }
 };
 
-bool validate_battlefield(vector<vector<int> > field) {
-    unordered_set<pair<int, int>, PairHash> s;
+void find_ship(stack<int> &st, unordered_set<pair<int, int> > &visited) {
+
+}
+
+bool validate_battlefield(const vector<vector<int> > &field) {
+    unordered_set<pair<int, int>, PairHash> visited;
+    unordered_map<int, int> mp;
+    stack<pair<int, int> > st;
 
 
     for (int row = 0; row < 10; ++row) {
         for (int col = 0; col < 10; ++col) {
-            if (s.count({row, col}) == 0) {
-                s.insert({row, col});
+            if (visited.count({row, col}) == 0) {
+                visited.insert({row, col});
 
-                if (field[row][col] == 0) {
-                    continue;
+                if (field[row][col] == 1) {
+                    st.emplace(row, col);
+                    find_ship(st, visited);
                 }
-
-
             }
         }
     }
