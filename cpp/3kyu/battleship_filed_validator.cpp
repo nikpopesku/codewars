@@ -12,28 +12,31 @@ struct PairHash {
 bool validate(set<pair<int, int> > &ship) {
     string directions, new_directions;
     pair<int, int> previous;
+    int counter = 0;
 
     for (auto &s: ship) {
-        if (previous) {
+        if (counter > 0) {
             if (s.first == previous.first) {
-                new_directions = 'horizontal';
+                new_directions = "horizontal";
             }
 
             if (s.second == previous.second) {
-                new_directions = 'vertical';
+                new_directions = "vertical";
             }
 
             if (new_directions.size() == 0) {
                 return false;
             }
 
-            if (directions.size() != 0 && new_directions != directions) {
+            if (new_directions != directions) {
                 return false;
             }
 
             directions = new_directions;
         }
+
         previous = s;
+        ++counter;
     }
 
     return true;
