@@ -9,12 +9,16 @@ struct PairHash {
     }
 };
 
-void find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
-               const vector<vector<int> > &field) {
+int find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited,
+              const vector<vector<int> > &field) {
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    unordered_set<pair<int, int>, PairHash> ship;
+
     while (!st.empty()) {
         auto [row, col] = st.top();
         st.pop();
+
+        ship.insert({row, col});
 
         for (auto &[fst, snd]: directions) {
             const pair nd = {row + fst, col + snd};
@@ -22,6 +26,7 @@ void find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHas
             if (nd.first >= 0 && nd.first < 10 && nd.second >= 0 && nd.second < 10 && visited.count(nd) == 0) {
                 visited.insert(nd);
                 if (field[nd.first][nd.second] == 1) {
+                    st.push(nd);
                 }
             }
         }
@@ -30,7 +35,7 @@ void find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHas
 
 bool validate_battlefield(const vector<vector<int> > &field) {
     unordered_set<pair<int, int>, PairHash> visited;
-    unordered_map<int, int> mp;
+    unordered_map<int, int> ship_mp;
     stack<pair<int, int> > st;
 
 
