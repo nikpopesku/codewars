@@ -9,8 +9,12 @@ struct PairHash {
     }
 };
 
-void find_ship(stack<int> &st, unordered_set<pair<int, int> > &visited) {
-
+void find_ship(stack<pair<int, int>> &st, unordered_set<pair<int, int>, PairHash> &visited) {
+    vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    while (!st.empty()) {
+        auto elem = st.top();
+        st.pop();
+    }
 }
 
 bool validate_battlefield(const vector<vector<int> > &field) {
