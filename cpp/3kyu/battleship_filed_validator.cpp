@@ -3,8 +3,14 @@
 
 using namespace std;
 
+struct PairHash {
+    size_t operator()(const pair<int, int>& p) const {
+        return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
+    }
+};
+
 bool validate_battlefield(vector<vector<int> > field) {
-    unordered_set<pair<int, int> > s;
+    unordered_set<pair<int, int>, PairHash> s;
 
     for (int row = 0; row < 10; ++row) {
         for (int col = 0; col < 10; ++col) {
