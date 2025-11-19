@@ -9,7 +9,7 @@ struct PairHash {
     }
 };
 
-void find_ship(stack<pair<int, int>> &st, unordered_set<pair<int, int>, PairHash> &visited) {
+void find_ship(stack<pair<int, int> > &st, unordered_set<pair<int, int>, PairHash> &visited) {
     vector<pair<int, int> > directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     while (!st.empty()) {
         auto elem = st.top();
