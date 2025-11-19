@@ -4,7 +4,7 @@
 using namespace std;
 
 struct PairHash {
-    size_t operator()(const pair<int, int>& p) const {
+    size_t operator()(const pair<int, int> &p) const {
         return hash<int>()(p.first) ^ (hash<int>()(p.second) << 1);
     }
 };
