@@ -28,7 +28,7 @@ bool validate(const set<pair<int, int> > &ship) {
                 return false;
             }
 
-            if (new_directions != directions) {
+            if (directions.size() != 0 && new_directions != directions) {
                 return false;
             }
 
