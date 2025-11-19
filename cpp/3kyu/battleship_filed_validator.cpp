@@ -4,6 +4,14 @@
 using namespace std;
 
 bool validate_battlefield(vector<vector<int> > field) {
+    unordered_set<pair<int, int> > s;
+
+    for (int row = 0; row < 10; ++row) {
+        for (int col = 0; col < 10; ++col) {
+            if (s.count({row, col}) == 0) {
+            }
+        }
+    }
 }
 
 
