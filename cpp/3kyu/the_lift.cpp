@@ -5,7 +5,7 @@ using namespace std;
 
 enum DIRECTIONS { UP, DOWN };
 
-bool change_direction(const int floor, DIRECTIONS direction, const vector<vector<int> > &queues,
+bool change_direction(const int floor, const DIRECTIONS direction, const vector<vector<int> > &queues,
                       const set<int> &people_in_lift, const int N) {
     if (direction == DOWN && floor == 0) {
         return true;
