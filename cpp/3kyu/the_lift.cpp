@@ -47,7 +47,7 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
 
 vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
     const int N = queues.size();
-    vector response = {0};
+    vector response = {};
     int people_transported = 0;
     int people_total = 0;
     set<int> people_in_lift;
@@ -67,9 +67,12 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
                 continue;
             }
 
+            bool add_floor_to_response = false;
+
             for (auto &person: people_in_lift) {
                 if (person == floor) {
                     people_in_lift.erase(person);
+                    add_floor_to_response = true;
                 }
             }
 
@@ -82,17 +85,23 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
                         ++people_transported;
+                        add_floor_to_response = true;
                     }
                     if (person < floor && direction == DOWN) {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
                         ++people_transported;
+                        add_floor_to_response = true;
                     }
                 }
             }
 
             for (const auto &person: got_in_lift) {
                 queues[floor].erase(queues[floor].begin() + person);
+            }
+
+            if (add_floor_to_response) {
+                response.push_back(floor);
             }
 
             floor += direction == UP ? 1 : -1;
