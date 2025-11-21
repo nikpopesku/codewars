@@ -46,6 +46,10 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
                     }
+                    if (person < floor && direction == DOWN) {
+                        people_in_lift.insert(person);
+                        got_in_lift.push_back(i);
+                    }
                 }
             }
 
