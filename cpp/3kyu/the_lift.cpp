@@ -10,9 +10,9 @@ bool change_direction(int floor, string direction, const vector<vector<int> > &q
 vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     int N = queues.size();
     vector response = {0};
-    int lift_capacity = 0;
     int people_transported = 0;
     int people_total = 0;
+    vector<int> people_in_lift = {};
     int floor = 0;
     string direction = "up";
 
@@ -21,9 +21,9 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     }
 
     while (people_transported < people_total) {
-        bool condition = direction == "up" ? floor < N : floor >= 0;
+        bool move_not_finish = direction == "up" ? floor < N : floor >= 0;
 
-        while (condition) {
+        while (move_not_finish) {
             if (change_direction(floor, direction, queues)) {
                 direction == "up" ? "down" : "up";
                 break;
