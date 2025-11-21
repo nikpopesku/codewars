@@ -59,7 +59,7 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
     }
 
     while (people_transported < people_total) {
-        const bool move_not_finish = direction == UP ? floor < N : floor >= 0;
+        bool move_not_finish = direction == UP ? floor < N : floor >= 0;
 
         while (move_not_finish) {
             if (change_direction(floor, direction, queues, people_in_lift, N)) {
@@ -96,6 +96,7 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
             }
 
             floor += direction == UP ? 1 : -1;
+            move_not_finish = direction == UP ? floor < N : floor >= 0;
         }
     }
 
