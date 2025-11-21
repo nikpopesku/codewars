@@ -11,22 +11,26 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     int N = queues.size();
     vector response = {0};
     int lift_capacity = 0;
-    int index = 0;
-    int people = 0;
+    int people_transported = 0;
+    int people_total = 0;
     int floor = 0;
     string direction = "up";
 
     for (auto &q: queues) {
-        people += static_cast<int>(q.size());
+        people_total += static_cast<int>(q.size());
     }
 
-    while (index < people) {
+    while (people_transported < people_total) {
         bool condition = direction == "up" ? floor < N : floor >= 0;
 
         while (condition) {
             if (change_direction(floor, direction, queues)) {
                 direction == "up" ? "down" : "up";
                 break;
+            }
+
+            for (auto &new_floor: queues[floor]) {
+
             }
 
             floor += direction == "up" ? 1 : -1;
