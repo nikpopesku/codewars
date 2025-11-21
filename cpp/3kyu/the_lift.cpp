@@ -47,7 +47,7 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
 
 vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
     const int N = queues.size();
-    vector response = {};
+    vector<int> response = {};
     int people_transported = 0;
     int people_total = 0;
     set<int> people_in_lift;
