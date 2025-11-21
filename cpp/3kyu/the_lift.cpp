@@ -5,7 +5,32 @@ using namespace std;
 
 enum DIRECTIONS { UP, DOWN };
 
-bool change_direction(int floor, DIRECTIONS direction, const vector<vector<int> > &queues) {
+bool change_direction(const int floor, DIRECTIONS direction, const vector<vector<int> > &queues,
+                      const set<int> people_in_lift, const int N) {
+    if (direction == DOWN && floor == 0) {
+        return true;
+    }
+
+    if (direction == UP && floor == N - 1) {
+        return true;
+    }
+
+    for (auto &person: people_in_lift) {
+        if (direction == UP && person > floor) {
+            return true;
+        }
+
+        if (direction == DOWN && person < floor) {
+            return true;
+        }
+    }
+
+    if (direction == UP) {
+        for (int i = floor; i < N; ++i) {
+        }
+    }
+
+
     return false;
 }
 
@@ -26,7 +51,7 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
         const bool move_not_finish = direction == UP ? floor < N : floor >= 0;
 
         while (move_not_finish) {
-            if (change_direction(floor, direction, queues)) {
+            if (change_direction(floor, direction, queues, people_in_lift, N)) {
                 direction == UP ? DOWN : UP;
                 continue;
             }
