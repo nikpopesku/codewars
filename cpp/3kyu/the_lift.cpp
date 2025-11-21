@@ -2,30 +2,32 @@
 #include <vector>
 
 using namespace std;
+enum DIRECTIONS { UP, DOWN };
 
-bool change_direction(int floor, string direction, const vector<vector<int> > &queues) {
+bool change_direction(int floor, DIRECTIONS direction, const vector<vector<int> > &queues) {
     return false;
 }
 
 vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
-    int N = queues.size();
+
+    const int N = queues.size();
     vector response = {0};
     int people_transported = 0;
     int people_total = 0;
     set<int> people_in_lift;
     int floor = 0;
-    string direction = "up";
+    DIRECTIONS direction = UP;
 
     for (auto &q: queues) {
         people_total += static_cast<int>(q.size());
     }
 
     while (people_transported < people_total) {
-        bool move_not_finish = direction == "up" ? floor < N : floor >= 0;
+        bool move_not_finish = direction == UP ? floor < N : floor >= 0;
 
         while (move_not_finish) {
             if (change_direction(floor, direction, queues)) {
-                direction == "up" ? "down" : "up";
+                direction == UP ? DOWN : UP;
                 break;
             }
 
@@ -35,7 +37,12 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
                 }
             }
 
-            for (auto &new_floor: queues[floor]) {
+            for (auto &person: queues[floor]) {
+                if (static_cast<int>(people_in_lift.size()) < capacity) {
+                    if (person > floor && direction == "up") {
+                        people_in_lift.insert(person);
+                    }
+                }
             }
 
             floor += direction == "up" ? 1 : -1;
