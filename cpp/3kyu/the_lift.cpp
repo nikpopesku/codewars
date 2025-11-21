@@ -6,7 +6,7 @@ using namespace std;
 enum DIRECTIONS { UP, DOWN };
 
 bool change_direction(const int floor, DIRECTIONS direction, const vector<vector<int> > &queues,
-                      const set<int> people_in_lift, const int N) {
+                      const set<int> &people_in_lift, const int N) {
     if (direction == DOWN && floor == 0) {
         return true;
     }
@@ -17,21 +17,36 @@ bool change_direction(const int floor, DIRECTIONS direction, const vector<vector
 
     for (auto &person: people_in_lift) {
         if (direction == UP && person > floor) {
-            return true;
+            return false;
         }
 
         if (direction == DOWN && person < floor) {
-            return true;
+            return false;
         }
     }
 
     if (direction == UP) {
         for (int i = floor; i < N; ++i) {
+            for (auto &person: queues[i]) {
+                if (person > floor) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (direction == DOWN) {
+        for (int i = floor; i >= 0; --i) {
+            for (auto &person: queues[i]) {
+                if (person < floor) {
+                    return false;
+                }
+            }
         }
     }
 
 
-    return false;
+    return true;
 }
 
 vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
