@@ -4,7 +4,7 @@
 using namespace std;
 enum DIRECTIONS { UP, DOWN };
 
-bool change_direction(int floor, DIRECTIONS direction, const vector<vector<int> > &queues) {
+bool change_direction(int floor, DIRECTIONS direction, vector<vector<int> > &queues) {
     return false;
 }
 
@@ -37,10 +37,12 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
                 }
             }
 
-            for (auto &person: queues[floor]) {
+            for (int i = 0; i < static_cast<int>(queues[floor].size()); ++i) {
+                auto person = queues[floor][i];
                 if (static_cast<int>(people_in_lift.size()) < capacity) {
                     if (person > floor && direction == UP) {
                         people_in_lift.insert(person);
+                        queues[floor].erase(queues[floor].begin() + i);
                     }
                 }
             }
