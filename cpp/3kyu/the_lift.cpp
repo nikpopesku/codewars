@@ -3,7 +3,7 @@
 
 using namespace std;
 
-std::vector<int> the_lift(const std::vector<std::vector<int>> &queues, int capacity) {
+vector<int> the_lift(const vector<vector<int>> &queues, int capacity) {
     return {};
 }
 
@@ -11,7 +11,7 @@ Describe(Sample_Tests)
 {
     It(Tests)
     {
-        std::vector<std::vector<int>> queues; std::vector<int> result;
+        vector<vector<int>> queues; vector<int> result;
 
         queues = { {}, {}, {5,5,5}, {}, {}, {}, {} };
         result = {0, 2, 5, 0};
