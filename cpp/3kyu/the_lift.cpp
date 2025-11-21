@@ -23,12 +23,12 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
     }
 
     while (people_transported < people_total) {
-        bool move_not_finish = direction == UP ? floor < N : floor >= 0;
+        const bool move_not_finish = direction == UP ? floor < N : floor >= 0;
 
         while (move_not_finish) {
             if (change_direction(floor, direction, queues)) {
                 direction == UP ? DOWN : UP;
-                break;
+                continue;
             }
 
             for (auto &person: people_in_lift) {
@@ -45,10 +45,12 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
                     if (person > floor && direction == UP) {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
+                        ++people_transported;
                     }
                     if (person < floor && direction == DOWN) {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
+                        ++people_transported;
                     }
                 }
             }
