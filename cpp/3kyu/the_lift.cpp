@@ -4,7 +4,18 @@
 using namespace std;
 
 vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
-    return {};
+    vector response = {0};
+    int lift_capacity = 0;
+    int index = 0;
+
+    while (index < static_cast<int>(queues.size())) {
+        if (!queues[index].empty()) {
+        }
+
+        ++index;
+    }
+
+    return response;
 }
 
 Describe(Sample_Tests) {
