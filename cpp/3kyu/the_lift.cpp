@@ -27,20 +27,16 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
 
     if (direction == UP) {
         for (int i = floor; i < N; ++i) {
-            for (auto &person: queues[i]) {
-                if (person > floor) {
-                    return false;
-                }
+            if (!queues[i].empty()) {
+                return false;
             }
         }
     }
 
     if (direction == DOWN) {
         for (int i = floor; i >= 0; --i) {
-            for (auto &person: queues[i]) {
-                if (person < floor) {
-                    return false;
-                }
+            if (queues[i].empty()) {
+                return false;
             }
         }
     }
