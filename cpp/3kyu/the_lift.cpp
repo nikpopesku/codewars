@@ -4,12 +4,32 @@
 using namespace std;
 
 vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
+    int N = queues.size();
     vector response = {0};
     int lift_capacity = 0;
     int index = 0;
+    int people = 0;
+    int floor = 0;
+    string direction = "up";
 
-    while (index < static_cast<int>(queues.size())) {
+    for (auto &q: queues) {
+        people += static_cast<int>(q.size());
+    }
+
+    while (index < people) {
+        bool condition = direction == "up" ? floor < N : floor >= 0;
+
+        while(condition) {
+            floor += direction == "up" ? 1 : -1;
+        }
+
+
+
+
+
         if (!queues[index].empty()) {
+            if (capacity - lift_capacity > 0) {
+            }
         }
 
         ++index;
