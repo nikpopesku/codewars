@@ -12,7 +12,7 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     vector response = {0};
     int people_transported = 0;
     int people_total = 0;
-    vector<int> people_in_lift = {};
+    set<int> people_in_lift;
     int floor = 0;
     string direction = "up";
 
@@ -29,13 +29,17 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
                 break;
             }
 
-            for (auto &new_floor: queues[floor]) {
+            for (auto &person: people_in_lift) {
+                if (person == floor) {
+                    people_in_lift.erase(person);
+                }
+            }
 
+            for (auto &new_floor: queues[floor]) {
             }
 
             floor += direction == "up" ? 1 : -1;
         }
-
 
 
         if (!queues[index].empty()) {
