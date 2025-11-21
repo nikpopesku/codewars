@@ -29,7 +29,8 @@ add_library(kata STATIC
     #cpp/4kyu/explosive_sum.cpp
 #    cpp/3kyu/path_finder3.cpp
 #    cpp/3kyu/centre_of_attention.cpp
-    cpp/3kyu/battleship_filed_validator.cpp
+#    cpp/3kyu/battleship_filed_validator.cpp
+    cpp/3kyu/the_lift.cpp
 )
 
 # Test executable containing all test files
@@ -45,7 +46,8 @@ add_executable(YourTestRunner
 #    cpp/4kyu/explosive_sum.cpp
 #    cpp/3kyu/path_finder3.cpp
 #    cpp/3kyu/centre_of_attention.cpp
-    cpp/3kyu/battleship_filed_validator.cpp
+#    cpp/3kyu/battleship_filed_validator.cpp
+    cpp/3kyu/the_lift.cpp
 )
 
 # Link Catch2 main and your library
