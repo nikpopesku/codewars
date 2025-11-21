@@ -3,7 +3,7 @@
 
 using namespace std;
 
-bool move_direction(int floor, string direction, const vector<vector<int> > &queues) {
+bool change_direction(int floor, string direction, const vector<vector<int> > &queues) {
     return false;
 }
 
@@ -24,8 +24,9 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
         bool condition = direction == "up" ? floor < N : floor >= 0;
 
         while (condition) {
-            if (!move_direction(floor, direction, queues)) {
+            if (change_direction(floor, direction, queues)) {
                 direction == "up" ? "down" : "up";
+                break;
             }
 
             floor += direction == "up" ? 1 : -1;
