@@ -3,6 +3,10 @@
 
 using namespace std;
 
+bool move_direction(int floor, string direction, const vector<vector<int> > &queues) {
+    return false;
+}
+
 vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     int N = queues.size();
     vector response = {0};
@@ -19,11 +23,13 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
     while (index < people) {
         bool condition = direction == "up" ? floor < N : floor >= 0;
 
-        while(condition) {
+        while (condition) {
+            if (!move_direction(floor, direction, queues)) {
+                direction == "up" ? "down" : "up";
+            }
+
             floor += direction == "up" ? 1 : -1;
         }
-
-
 
 
 
@@ -31,8 +37,6 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
             if (capacity - lift_capacity > 0) {
             }
         }
-
-        ++index;
     }
 
     return response;
