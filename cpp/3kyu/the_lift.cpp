@@ -67,7 +67,7 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
 
         while (move_not_finish) {
             if (change_direction(floor, direction, queues, people_in_lift, N)) {
-                direction == UP ? DOWN : UP;
+                direction = direction == UP ? DOWN : UP;
                 continue;
             }
 
@@ -100,12 +100,6 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
             }
 
             floor += direction == UP ? 1 : -1;
-        }
-
-
-        if (!queues[index].empty()) {
-            if (capacity - lift_capacity > 0) {
-            }
         }
     }
 
