@@ -39,7 +39,7 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
 
             for (auto &person: queues[floor]) {
                 if (static_cast<int>(people_in_lift.size()) < capacity) {
-                    if (person > floor && direction == "up") {
+                    if (person > floor && direction == UP) {
                         people_in_lift.insert(person);
                     }
                 }
