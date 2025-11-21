@@ -47,7 +47,7 @@ vector<int> the_lift(const vector<vector<int> > &queues, int capacity) {
                 }
             }
 
-            floor += direction == "up" ? 1 : -1;
+            floor += direction == UP ? 1 : -1;
         }
 
 
