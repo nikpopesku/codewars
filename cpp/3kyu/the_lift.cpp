@@ -195,17 +195,17 @@ Describe(Sample_Tests)
         Assert::That(the_lift(queues, 2), Equals(result));
 
         //Lift_full_up
-        queues = {{3,3,3,3,3,3}, {}, {}, {}, {}, {}, {} };
+        queues = {{3, 3, 3, 3, 3, 3}, {}, {}, {}, {}, {}, {}};
         result = {0, 3, 0, 3, 0};
         Assert::That(the_lift(queues, 5), Equals(result));
 
         //Empty_building
-        queues = { {}, {}, {}, {}, {}, {}, {} };
+        queues = {{}, {}, {}, {}, {}, {}, {}};
         result = {0};
         Assert::That(the_lift(queues, 5), Equals(result));
 
         //Highlander
-        queues = { { {}, {2}, {3,3,3}, {1}, {}, {}, {} } };
+        queues = {{{}, {2}, {3, 3, 3}, {1}, {}, {}, {}}};
         result = {0};
         Assert::That(the_lift(queues, 1), Equals(result));
     }
