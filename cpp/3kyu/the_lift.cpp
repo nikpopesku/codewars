@@ -205,8 +205,13 @@ Describe(Sample_Tests)
         Assert::That(the_lift(queues, 5), Equals(result));
 
         //Highlander
-        queues = {{{}, {2}, {3, 3, 3}, {1}, {}, {}, {}}};
-        result = {0};
+        queues = {{}, {2}, {3, 3, 3}, {1}, {}, {}, {}};
+        result = {0, 1, 2, 3, 1, 2, 3, 2, 3, 0};
         Assert::That(the_lift(queues, 1), Equals(result));
+
+        //Fire_drill
+        queues = {{}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+        result = {0, 6, 5, 4, 3, 2, 1, 0, 5, 4, 3, 2, 1, 0, 4, 3, 2, 1, 0, 3, 2, 1, 0, 1, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
     }
 };
