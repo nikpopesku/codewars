@@ -143,7 +143,8 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
             if (change_direction(floor, direction, queues, people_in_lift, N))
             {
                 direction = direction == UP ? DOWN : UP;
-            } else
+            }
+            else
             {
                 floor += direction == UP ? 1 : -1;
                 still_move = direction == UP ? floor < N : floor >= 0;
@@ -186,5 +187,10 @@ Describe(Sample_Tests)
         queues = {{3}, {2}, {0}, {2}, {}, {}, {5}};
         result = {0, 1, 2, 3, 6, 5, 3, 2, 0};
         Assert::That(the_lift(queues, 5), Equals(result));
+
+        //Yoyo
+        queues = {{}, {}, {4, 4, 4, 4}, {}, {2, 2, 2, 2}, {}, {}};
+        result = {0, 2, 4, 4, 2, 2, 4, 4, 2, 0};
+        Assert::That(the_lift(queues, 2), Equals(result));
     }
 };
