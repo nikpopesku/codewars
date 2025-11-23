@@ -7,7 +7,7 @@ using namespace std;
 enum DIRECTIONS { UP, DOWN };
 
 bool change_direction(const int floor, const DIRECTIONS direction, const vector<vector<int>>& queues,
-                      const unordered_set<int>& people_in_lift, const int N)
+                      const vector<int>& people_in_lift, const int N)
 {
     if (direction == DOWN && floor == 0)
     {
@@ -64,7 +64,7 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
     vector<int> response = {};
     int people_transported = 0;
     int people_total = 0;
-    unordered_set<int> people_in_lift;
+    vector<int> people_in_lift;
     int floor = 0;
     DIRECTIONS direction = UP;
 
@@ -99,7 +99,7 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
                 {
                     if (*it == floor)
                     {
-                        it = people_in_lift.erase(it);
+                        people_in_lift.erase(it++);
                         add_floor_to_response = true;
                         ++people_transported;
                     }
@@ -117,15 +117,9 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
 
                 if (static_cast<int>(people_in_lift.size()) < capacity)
                 {
-                    if (person > floor && direction == UP)
+                    if ((person > floor && direction == UP) || (person < floor && direction == DOWN))
                     {
-                        people_in_lift.insert(person);
-                        got_in_lift.push_back(i);
-                        add_floor_to_response = true;
-                    }
-                    if (person < floor && direction == DOWN)
-                    {
-                        people_in_lift.insert(person);
+                        people_in_lift.push_back(person);
                         got_in_lift.push_back(i);
                         add_floor_to_response = true;
                     }
