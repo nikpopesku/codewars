@@ -1,6 +1,5 @@
 #include "../cw_compat.hpp"
 #include <vector>
-#include <unordered_set>
 
 using namespace std;
 
@@ -58,7 +57,7 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
     return true;
 }
 
-vector<int> the_lift(vector<vector<int>>& queues, int capacity)
+vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
 {
     const int N = static_cast<int>(queues.size());
     vector<int> response = {};
@@ -108,16 +107,18 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
             vector<int> got_in_lift;
             for (int i = 0; i < static_cast<int>(queues[floor].size()); ++i)
             {
+                if (static_cast<int>(people_in_lift.size()) >= capacity)
+                {
+                    break;
+                }
+
                 auto person = queues[floor][i];
 
-                if (static_cast<int>(people_in_lift.size()) < capacity)
+                if ((person > floor && direction == UP) || (person < floor && direction == DOWN))
                 {
-                    if ((person > floor && direction == UP) || (person < floor && direction == DOWN))
-                    {
-                        people_in_lift.push_back(person);
-                        got_in_lift.push_back(i);
-                        add_floor_to_response = true;
-                    }
+                    people_in_lift.push_back(person);
+                    got_in_lift.push_back(i);
+                    add_floor_to_response = true;
                 }
             }
 
