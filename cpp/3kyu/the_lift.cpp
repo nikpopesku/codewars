@@ -68,6 +68,11 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
     int floor = 0;
     DIRECTIONS direction = UP;
 
+    if (queues[0].empty())
+    {
+        response.push_back(0);
+    }
+
     for (auto& q : queues)
     {
         people_total += static_cast<int>(q.size());
@@ -96,6 +101,7 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
                     {
                         it = people_in_lift.erase(it);
                         add_floor_to_response = true;
+                        ++people_transported;
                     }
                     else
                     {
@@ -115,14 +121,12 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
                     {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
-                        ++people_transported;
                         add_floor_to_response = true;
                     }
                     if (person < floor && direction == DOWN)
                     {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
-                        ++people_transported;
                         add_floor_to_response = true;
                     }
                 }
