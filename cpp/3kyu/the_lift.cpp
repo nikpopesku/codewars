@@ -46,7 +46,7 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
     {
         for (int i = floor; i >= 0; --i)
         {
-            if (queues[i].empty())
+            if (!queues[i].empty())
             {
                 return false;
             }
