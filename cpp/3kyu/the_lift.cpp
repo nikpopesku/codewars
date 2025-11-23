@@ -99,19 +99,16 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
             }
 
             vector<int> got_in_lift;
-            for (int i = 0; i < static_cast<int>(queues[floor].size()); ++i)
+            for (auto & person: queues[floor])
             {
-                if (static_cast<int>(people_in_lift.size()) >= capacity)
-                {
-                    break;
-                }
-
-                auto person = queues[floor][i];
-
                 if ((person > floor && direction == UP) || (person < floor && direction == DOWN))
                 {
-                    people_in_lift.push_back(person);
-                    got_in_lift.push_back(person);
+                    if (static_cast<int>(people_in_lift.size()) < capacity)
+                    {
+                        people_in_lift.push_back(person);
+                        got_in_lift.push_back(person);
+                    }
+
                     add_floor_to_response = true;
                 }
             }
