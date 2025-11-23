@@ -123,12 +123,15 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
 
             for (const auto& p_in_lift : got_in_lift)
             {
-                for (auto it = queues[floor].begin(); it != queues[floor].end(); ++it)
+                for (auto it = queues[floor].begin(); it != queues[floor].end();)
                 {
-                    if (*it == p_in_lift)
+                    if (*it != p_in_lift)
                     {
-                        queues[floor].erase(it);
+                        ++it;
+                        continue;
                     }
+
+                    queues[floor].erase(it);
                 }
             }
 
@@ -162,17 +165,17 @@ Describe(Sample_Tests)
         vector<vector<int>> queues;
         vector<int> result;
 
-        // queues = {{}, {}, {5, 5, 5}, {}, {}, {}, {}};
-        // result = {0, 2, 5, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // queues = {{}, {}, {1, 1}, {}, {}, {}, {}};
-        // result = {0, 2, 1, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // queues = {{}, {3}, {4}, {}, {5}, {}, {}};
-        // result = {0, 1, 2, 3, 4, 5, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
+        queues = {{}, {}, {5, 5, 5}, {}, {}, {}, {}};
+        result = {0, 2, 5, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        queues = {{}, {}, {1, 1}, {}, {}, {}, {}};
+        result = {0, 2, 1, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        queues = {{}, {3}, {4}, {}, {5}, {}, {}};
+        result = {0, 1, 2, 3, 4, 5, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
 
         queues = {{}, {0}, {}, {}, {2}, {3}, {}};
         result = {0, 5, 4, 3, 2, 1, 0};
