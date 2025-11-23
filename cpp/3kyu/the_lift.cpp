@@ -6,37 +6,49 @@ using namespace std;
 
 enum DIRECTIONS { UP, DOWN };
 
-bool change_direction(const int floor, const DIRECTIONS direction, const vector<vector<int> > &queues,
-                      const unordered_set<int> &people_in_lift, const int N) {
-    if (direction == DOWN && floor == 0) {
+bool change_direction(const int floor, const DIRECTIONS direction, const vector<vector<int>>& queues,
+                      const unordered_set<int>& people_in_lift, const int N)
+{
+    if (direction == DOWN && floor == 0)
+    {
         return true;
     }
 
-    if (direction == UP && floor == N - 1) {
+    if (direction == UP && floor == N - 1)
+    {
         return true;
     }
 
-    for (auto &person: people_in_lift) {
-        if (direction == UP && person > floor) {
+    for (auto& person : people_in_lift)
+    {
+        if (direction == UP && person > floor)
+        {
             return false;
         }
 
-        if (direction == DOWN && person < floor) {
+        if (direction == DOWN && person < floor)
+        {
             return false;
         }
     }
 
-    if (direction == UP) {
-        for (int i = floor; i < N; ++i) {
-            if (!queues[i].empty()) {
+    if (direction == UP)
+    {
+        for (int i = floor; i < N; ++i)
+        {
+            if (!queues[i].empty())
+            {
                 return false;
             }
         }
     }
 
-    if (direction == DOWN) {
-        for (int i = floor; i >= 0; --i) {
-            if (queues[i].empty()) {
+    if (direction == DOWN)
+    {
+        for (int i = floor; i >= 0; --i)
+        {
+            if (queues[i].empty())
+            {
                 return false;
             }
         }
@@ -46,8 +58,9 @@ bool change_direction(const int floor, const DIRECTIONS direction, const vector<
     return true;
 }
 
-vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
-    const int N = queues.size();
+vector<int> the_lift(vector<vector<int>>& queues, int capacity)
+{
+    const int N = static_cast<int>(queues.size());
     vector<int> response = {};
     int people_transported = 0;
     int people_total = 0;
@@ -55,42 +68,58 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
     int floor = 0;
     DIRECTIONS direction = UP;
 
-    for (auto &q: queues) {
+    for (auto& q : queues)
+    {
         people_total += static_cast<int>(q.size());
     }
 
-    while (people_transported < people_total) {
+    while (people_transported < people_total)
+    {
         bool move_not_finish = direction == UP ? floor < N : floor >= 0;
 
-        while (move_not_finish) {
-            if (change_direction(floor, direction, queues, people_in_lift, N)) {
+        while (move_not_finish)
+        {
+            if (change_direction(floor, direction, queues, people_in_lift, N))
+            {
                 direction = direction == UP ? DOWN : UP;
                 continue;
             }
 
             bool add_floor_to_response = false;
 
-            if (!people_in_lift.empty()) {
-                for (int person: people_in_lift) {
-                    if (person == floor) {
-                        people_in_lift.erase(person);
+            if (!people_in_lift.empty())
+            {
+                auto it = people_in_lift.begin();
+                while (it != people_in_lift.end())
+                {
+                    if (*it == floor)
+                    {
+                        it = people_in_lift.erase(it);
                         add_floor_to_response = true;
+                    }
+                    else
+                    {
+                        ++it;
                     }
                 }
             }
 
             vector<int> got_in_lift;
-            for (int i = 0; i < static_cast<int>(queues[floor].size()); ++i) {
+            for (int i = 0; i < static_cast<int>(queues[floor].size()); ++i)
+            {
                 auto person = queues[floor][i];
 
-                if (static_cast<int>(people_in_lift.size()) < capacity) {
-                    if (person > floor && direction == UP) {
+                if (static_cast<int>(people_in_lift.size()) < capacity)
+                {
+                    if (person > floor && direction == UP)
+                    {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
                         ++people_transported;
                         add_floor_to_response = true;
                     }
-                    if (person < floor && direction == DOWN) {
+                    if (person < floor && direction == DOWN)
+                    {
                         people_in_lift.insert(person);
                         got_in_lift.push_back(i);
                         ++people_transported;
@@ -99,25 +128,39 @@ vector<int> the_lift(vector<vector<int> > &queues, int capacity) {
                 }
             }
 
-            for (const auto &person: got_in_lift) {
+            for (const auto& person : got_in_lift)
+            {
                 queues[floor].erase(queues[floor].begin() + person);
             }
 
-            if (add_floor_to_response) {
+            if (add_floor_to_response)
+            {
                 response.push_back(floor);
             }
 
             floor += direction == UP ? 1 : -1;
             move_not_finish = direction == UP ? floor < N : floor >= 0;
+
+            if (people_transported == people_total)
+            {
+                break;
+            }
         }
+    }
+
+    if (response[response.size() - 1] != 0)
+    {
+        response.push_back(0);
     }
 
     return response;
 }
 
-Describe(Sample_Tests) {
-    It(Tests) {
-        vector<vector<int> > queues;
+Describe(Sample_Tests)
+{
+    It(Tests)
+    {
+        vector<vector<int>> queues;
         vector<int> result;
 
         queues = {{}, {}, {5, 5, 5}, {}, {}, {}, {}};
