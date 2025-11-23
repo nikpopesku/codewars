@@ -132,9 +132,15 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
                 }
             }
 
-            for (const auto& person : got_in_lift)
+            for (const auto& p_in_lift : got_in_lift)
             {
-                queues[floor].erase(queues[floor].begin() + person);
+                for (auto it = queues[floor].begin(); it != queues[floor].end(); ++it)
+                {
+                    if (*it == p_in_lift)
+                    {
+                        queues[floor].erase(it);
+                    }
+                }
             }
 
             if (add_floor_to_response)
