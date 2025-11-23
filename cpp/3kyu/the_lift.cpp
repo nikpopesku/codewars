@@ -197,5 +197,10 @@ Describe(Sample_Tests)
         queues = {{3,3,3,3,3,3}, {}, {}, {}, {}, {}, {} };
         result = {0, 2, 4, 4, 2, 2, 4, 4, 2, 0};
         Assert::That(the_lift(queues, 5), Equals(result));
+
+        // //Empty_building
+        // queues = { {}, {}, {}, {}, {}, {}, {} };
+        // result = {0};
+        // Assert::That(the_lift(queues, 5), Equals(result));
     }
 };
