@@ -83,12 +83,6 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
 
         while (still_move)
         {
-            if (change_direction(floor, direction, queues, people_in_lift, N))
-            {
-                direction = direction == UP ? DOWN : UP;
-                continue;
-            }
-
             bool add_floor_to_response = false;
 
             for (auto it = people_in_lift.begin(); it != people_in_lift.end();)
@@ -141,12 +135,18 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
                 response.push_back(floor);
             }
 
-            floor += direction == UP ? 1 : -1;
-            still_move = direction == UP ? floor < N : floor >= 0;
-
             if (people_transported == people_total)
             {
                 break;
+            }
+
+            if (change_direction(floor, direction, queues, people_in_lift, N))
+            {
+                direction = direction == UP ? DOWN : UP;
+            } else
+            {
+                floor += direction == UP ? 1 : -1;
+                still_move = direction == UP ? floor < N : floor >= 0;
             }
         }
     }
@@ -180,6 +180,11 @@ Describe(Sample_Tests)
 
         queues = {{}, {0}, {}, {}, {2}, {3}, {}};
         result = {0, 5, 4, 3, 2, 1, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        //Up_and_down
+        queues = {{3}, {2}, {0}, {2}, {}, {}, {5}};
+        result = {0, 1, 2, 3, 6, 5, 3, 2, 0};
         Assert::That(the_lift(queues, 5), Equals(result));
     }
 };
