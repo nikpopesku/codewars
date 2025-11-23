@@ -111,7 +111,7 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
                 if ((person > floor && direction == UP) || (person < floor && direction == DOWN))
                 {
                     people_in_lift.push_back(person);
-                    got_in_lift.push_back(i);
+                    got_in_lift.push_back(person);
                     add_floor_to_response = true;
                 }
             }
@@ -127,6 +127,7 @@ vector<int> the_lift(vector<vector<int>>& queues, const int capacity)
                     }
 
                     queues[floor].erase(it);
+                    break;
                 }
             }
 
@@ -167,40 +168,40 @@ Describe(Sample_Tests)
         vector<vector<int>> queues;
         vector<int> result;
 
-        // queues = {{}, {}, {5, 5, 5}, {}, {}, {}, {}};
-        // result = {0, 2, 5, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // queues = {{}, {}, {1, 1}, {}, {}, {}, {}};
-        // result = {0, 2, 1, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // queues = {{}, {3}, {4}, {}, {5}, {}, {}};
-        // result = {0, 1, 2, 3, 4, 5, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // queues = {{}, {0}, {}, {}, {2}, {3}, {}};
-        // result = {0, 5, 4, 3, 2, 1, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // //Up_and_down
-        // queues = {{3}, {2}, {0}, {2}, {}, {}, {5}};
-        // result = {0, 1, 2, 3, 6, 5, 3, 2, 0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
-        //
-        // //Yoyo
-        // queues = {{}, {}, {4, 4, 4, 4}, {}, {2, 2, 2, 2}, {}, {}};
-        // result = {0, 2, 4, 4, 2, 2, 4, 4, 2, 0};
-        // Assert::That(the_lift(queues, 2), Equals(result));
+        queues = {{}, {}, {5, 5, 5}, {}, {}, {}, {}};
+        result = {0, 2, 5, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        queues = {{}, {}, {1, 1}, {}, {}, {}, {}};
+        result = {0, 2, 1, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        queues = {{}, {3}, {4}, {}, {5}, {}, {}};
+        result = {0, 1, 2, 3, 4, 5, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        queues = {{}, {0}, {}, {}, {2}, {3}, {}};
+        result = {0, 5, 4, 3, 2, 1, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        //Up_and_down
+        queues = {{3}, {2}, {0}, {2}, {}, {}, {5}};
+        result = {0, 1, 2, 3, 6, 5, 3, 2, 0};
+        Assert::That(the_lift(queues, 5), Equals(result));
+
+        //Yoyo
+        queues = {{}, {}, {4, 4, 4, 4}, {}, {2, 2, 2, 2}, {}, {}};
+        result = {0, 2, 4, 4, 2, 2, 4, 4, 2, 0};
+        Assert::That(the_lift(queues, 2), Equals(result));
 
         //Lift_full_up
         queues = {{3,3,3,3,3,3}, {}, {}, {}, {}, {}, {} };
-        result = {0, 2, 4, 4, 2, 2, 4, 4, 2, 0};
+        result = {0, 3, 0, 3, 0};
         Assert::That(the_lift(queues, 5), Equals(result));
 
-        // //Empty_building
-        // queues = { {}, {}, {}, {}, {}, {}, {} };
-        // result = {0};
-        // Assert::That(the_lift(queues, 5), Equals(result));
+        //Empty_building
+        queues = { {}, {}, {}, {}, {}, {}, {} };
+        result = {0};
+        Assert::That(the_lift(queues, 5), Equals(result));
     }
 };
