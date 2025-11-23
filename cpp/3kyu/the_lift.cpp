@@ -92,21 +92,17 @@ vector<int> the_lift(vector<vector<int>>& queues, int capacity)
 
             bool add_floor_to_response = false;
 
-            if (!people_in_lift.empty())
+            for (auto it = people_in_lift.begin(); it != people_in_lift.end();)
             {
-                auto it = people_in_lift.begin();
-                while (it != people_in_lift.end())
+                if (*it == floor)
                 {
-                    if (*it == floor)
-                    {
-                        people_in_lift.erase(it++);
-                        add_floor_to_response = true;
-                        ++people_transported;
-                    }
-                    else
-                    {
-                        ++it;
-                    }
+                    people_in_lift.erase(it);
+                    add_floor_to_response = true;
+                    ++people_transported;
+                }
+                else
+                {
+                    ++it;
                 }
             }
 
